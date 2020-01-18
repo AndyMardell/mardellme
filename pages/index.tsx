@@ -1,6 +1,7 @@
 import { NextPage } from 'next'
 import Layout from '../components/Layout'
 import Container from '../components/global/Container'
+import Block from '../components/home/Block'
 import { Title, Subtitle } from '../components/global/Heading'
 
 const Home: NextPage = () => (
@@ -9,11 +10,16 @@ const Home: NextPage = () => (
       <Title>
         Mardell<span>.me</span>
       </Title>
-      <Subtitle>Creative Developer</Subtitle>
-      <div>
+      <Subtitle>
+        Creative
+        <br />
+        Developer
+      </Subtitle>
+      <Block>
         <p>
-          Developer at Si digital. ReactJS, Node.js, Gatsby, Next.js, Docker,
-          WordPress, Magento, cars, wife and coffee are all things I enjoy.
+          Developer at <a href='https://sidigital.co'>Si digital</a>. ReactJS,
+          Node.js, Gatsby, Next.js, Docker, WordPress, Magento, cars, wife and
+          coffee are all things I enjoy.
         </p>
         <nav>
           <ul>
@@ -31,7 +37,7 @@ const Home: NextPage = () => (
             </li>
           </ul>
         </nav>
-      </div>
+      </Block>
     </Container>
   </Layout>
 )

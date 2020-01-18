@@ -12,10 +12,10 @@ interface Props {
 }
 
 const Layout: FunctionComponent<Props> = ({ children }) => {
-  useFonts(
-    'https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,600|Montserrat:800&display=swap',
-    ['IBM Plex Sans', 'Montserrat']
-  )
+  useFonts([
+    ['IBM Plex Sans', '400,500,600'],
+    ['Montserrat', '800']
+  ])
 
   return (
     <>

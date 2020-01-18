@@ -5,6 +5,11 @@ const StyledDiv = styled.h1`
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 500;
   text-transform: lowercase;
+  margin: 0;
+
+  span {
+    color: #686868;
+  }
 `
 
 interface Props {

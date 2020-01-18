@@ -2,15 +2,24 @@ import { FunctionComponent, ReactNode } from 'react'
 import styled from 'styled-components'
 
 const StyledDiv = styled.div`
-  display: flex;
-  flex-direction: column;
+  position: fixed;
+  overflow: scroll;
   height: 100vh;
   width: 100vw;
   background: #2f2f2f;
   border: 20px solid #c8c8c8;
   box-sizing: border-box;
   color: #c8c8c8;
-  padding: 5rem 7rem;
+  background-image: url('shade.png');
+  background-size: cover;
+`
+
+const Wrapper = styled.div`
+  padding: 7rem;
+  display: flex;
+  min-height: calc(100vh - 14rem - 40px);
+  flex-direction: column;
+  justify-content: space-between;
 `
 
 interface Props {
@@ -18,7 +27,9 @@ interface Props {
 }
 
 const Container: FunctionComponent<Props> = ({ children }) => (
-  <StyledDiv>{children}</StyledDiv>
+  <StyledDiv>
+    <Wrapper>{children}</Wrapper>
+  </StyledDiv>
 )
 
 export default Container
