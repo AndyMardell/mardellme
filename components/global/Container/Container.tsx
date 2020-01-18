@@ -1,7 +1,8 @@
 import { FunctionComponent, ReactNode } from 'react'
 import styled from 'styled-components'
+import { useSpring, animated } from 'react-spring'
 
-const StyledDiv = styled.div`
+const StyledDiv = styled(animated.div)`
   position: fixed;
   overflow: scroll;
   height: 100vh;
@@ -14,6 +15,7 @@ const StyledDiv = styled.div`
   color: #c8c8c8;
   background-image: url('shade.png');
   background-size: cover;
+  background-position: center center;
 `
 
 const Wrapper = styled.div`
@@ -34,10 +36,21 @@ interface Props {
   children?: ReactNode
 }
 
-const Container: FunctionComponent<Props> = ({ children }) => (
-  <StyledDiv>
-    <Wrapper>{children}</Wrapper>
-  </StyledDiv>
-)
+const Container: FunctionComponent<Props> = ({ children }) => {
+  const backgroundSpring = useSpring({
+    config: {
+      tension: 200,
+      friction: 400
+    },
+    from: { backgroundSize: '100%' },
+    backgroundSize: '105%'
+  })
+
+  return (
+    <StyledDiv style={backgroundSpring}>
+      <Wrapper>{children}</Wrapper>
+    </StyledDiv>
+  )
+}
 
 export default Container
