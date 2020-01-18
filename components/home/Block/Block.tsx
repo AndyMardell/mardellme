@@ -6,10 +6,13 @@ const StyledDiv = styled.div`
   font-weight: 400;
   letter-spacing: 1px;
   line-height: 1.8;
-  border-left: 4px solid #c8c8c8;
   margin-left: 7px;
-  padding-left: 2rem;
   max-width: 480px;
+
+  @media only screen and (min-width: 550px) {
+    border-left: 4px solid #c8c8c8;
+    padding-left: 2rem;
+  }
 
   a {
     color: inherit;
@@ -23,19 +26,28 @@ const StyledDiv = styled.div`
   ul {
     list-style: none;
     padding: 0;
+    margin-top: 2em;
 
     li {
-      display: inline;
+      margin-top: 0.5em;
 
       a {
         font-weight: 500;
       }
     }
 
-    li:not(:last-child)::after {
-      content: '/';
-      display: inline-block;
-      margin: 0 0.5em;
+    @media only screen and (min-width: 550px) {
+      margin-top: 0;
+
+      li {
+        display: inline;
+      }
+
+      li:not(:last-child)::after {
+        content: '/';
+        display: inline-block;
+        margin: 0 0.5em;
+      }
     }
   }
 `
