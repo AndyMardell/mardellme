@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { FunctionComponent, ReactNode, useEffect } from 'react'
 import { createGlobalStyle } from 'styled-components'
 import { normalize } from 'polished'
-import useFonts from '../../hooks/useFonts'
+import useGoogleFonts from 'use-google-fonts'
 
 const GlobalStyle = createGlobalStyle`
   ${normalize()}
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Layout: FunctionComponent<Props> = ({ children }) => {
-  useFonts([
+  useGoogleFonts([
     ['IBM Plex Sans', '400,500,600'],
     ['Montserrat', '800']
   ])
