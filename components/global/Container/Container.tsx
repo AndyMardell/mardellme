@@ -55,7 +55,7 @@ const Container: FunctionComponent<Props> = ({ children }) => {
       friction: 400
     },
     from: { scale: 1 },
-    scale: 1.05
+    scale: 1.1
   })
 
   return (
