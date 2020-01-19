@@ -2,6 +2,8 @@ import { FunctionComponent, ReactNode } from 'react'
 import styled from 'styled-components'
 import { useSpring, animated } from 'react-spring'
 
+const shade = require('../../../images/shade.png')
+
 const Wrapper = styled.div`
   position: fixed;
   overflow: scroll;
@@ -22,7 +24,7 @@ const BackgroundImage = styled(animated.div)`
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('shade.png');
+  background-image: url('${shade}');
   background-size: cover;
   background-position: center center;
   z-index: -1;
