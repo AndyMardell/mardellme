@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { FunctionComponent, ReactNode, useEffect } from 'react'
+import { FunctionComponent, ReactNode } from 'react'
 import { createGlobalStyle } from 'styled-components'
 import { normalize } from 'polished'
 import useGoogleFonts from 'use-google-fonts'
