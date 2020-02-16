@@ -17,6 +17,7 @@ const StyledDiv = styled.div`
   a {
     color: inherit;
     text-decoration: none;
+    font-weight: 500;
 
     &:hover {
       border-bottom: 2px solid #c8c8c8;
@@ -30,10 +31,6 @@ const StyledDiv = styled.div`
 
     li {
       margin-top: 0.5em;
-
-      a {
-        font-weight: 500;
-      }
     }
 
     @media only screen and (min-width: 550px) {

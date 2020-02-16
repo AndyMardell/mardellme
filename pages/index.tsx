@@ -22,9 +22,18 @@ const Home: NextPage = () => (
       </Subtitle>
       <Block>
         <p>
-          Developer at <a href='https://sidigital.co'>Si digital</a>. ReactJS,
-          Node.js, Gatsby, Next.js, Docker, WordPress, Magento, cars, wife and
-          coffee are all things I enjoy.
+          Developer at{' '}
+          <a
+            href='https://sidigital.co'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Si digital.
+          </a>
+        </p>
+        <p>
+          ReactJS, Node.js, Gatsby, Next.js, Docker, Kubernetes, WordPress,
+          Magento, cars, wife, guitar and coffee are all things I enjoy.
         </p>
         <Links />
       </Block>

@@ -49,23 +49,10 @@ interface Props {
 }
 
 const Container: FunctionComponent<Props> = ({ children }) => {
-  const { scale } = useSpring({
-    config: {
-      tension: 200,
-      friction: 400
-    },
-    from: { scale: 1 },
-    scale: 1.1
-  })
-
   return (
     <Wrapper>
       <Content>{children}</Content>
-      <BackgroundImage
-        style={{
-          transform: scale.interpolate((s) => `scale(${s})`)
-        }}
-      />
+      <BackgroundImage />
     </Wrapper>
   )
 }
