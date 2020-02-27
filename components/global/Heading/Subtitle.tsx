@@ -1,7 +1,11 @@
 import { FunctionComponent, ReactNode } from 'react'
 import styled from 'styled-components'
 
-const StyledDiv = styled.h2`
+interface HeadingProps {
+  small?: boolean
+}
+
+const StyledDiv = styled.h2<HeadingProps>`
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
   text-transform: uppercase;
@@ -14,14 +18,21 @@ const StyledDiv = styled.h2`
     margin: 0.5em 0;
     text-shadow: 7px 9px 0px rgba(70, 70, 70, 1);
   }
+
+  ${({ small }) =>
+    small &&
+    `
+    font-size: calc(25px + (80 - 25) * ((100vw - 300px) / (1600 - 300)));
+  `}
 `
 
 interface Props {
   children?: ReactNode
+  small?: boolean
 }
 
-const Subtitle: FunctionComponent<Props> = ({ children }) => (
-  <StyledDiv>{children}</StyledDiv>
+const Subtitle: FunctionComponent<Props> = ({ children, small }) => (
+  <StyledDiv small={small}>{children}</StyledDiv>
 )
 
 export default Subtitle

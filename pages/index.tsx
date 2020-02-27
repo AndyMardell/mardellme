@@ -11,7 +11,7 @@ const Home: NextPage = () => (
     <Head>
       <title>Andy Mardell: Web Developer</title>
     </Head>
-    <Container>
+    <Container flex backgroundImage>
       <Title>
         Mardell<span>.me</span>
       </Title>

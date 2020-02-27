@@ -2,10 +2,6 @@ import { FunctionComponent, ReactNode } from 'react'
 import styled from 'styled-components'
 
 const StyledDiv = styled.div`
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 400;
-  letter-spacing: 1px;
-  line-height: 1.8;
   margin-left: 7px;
   max-width: 480px;
 
