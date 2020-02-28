@@ -11,6 +11,10 @@ const Work: NextPage = () => (
   <Layout>
     <Head>
       <title>Work – Andy Mardell: Web Developer</title>
+      <meta
+        name='description'
+        content='Experienced Developer from Portsmouth - a selection of projects I have built from the ground up in React, Node.js, Gatsby, Next, WordPress and Magento.'
+      />
     </Head>
     <Container background>
       <Header />

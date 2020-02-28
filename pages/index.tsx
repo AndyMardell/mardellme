@@ -12,6 +12,10 @@ const Home: NextPage = () => (
   <Layout>
     <Head>
       <title>Andy Mardell: Web Developer</title>
+      <meta
+        name='description'
+        content='Experienced Developer from Portsmouth with a demonstrated history of working in the industry. Skilled in JavaScript (React, Node.js, Gatsby, Next), DevOps (Docker, Vagrant, Unix), PHP, WordPress and Magento.'
+      />
     </Head>
     <Container flex background>
       <Header />
