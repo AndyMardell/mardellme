@@ -50,8 +50,8 @@ const Wrapper = styled.div<StyleProps>`
 const Content = styled.div<StyleProps>`
   padding-left: calc(20px + (90 - 20) * ((100vw - 300px) / (1600 - 300)));
   padding-right: calc(20px + (90 - 20) * ((100vw - 300px) / (1600 - 300)));
-  padding-top: calc(35px + (90 - 35) * ((100vw - 300px) / (1600 - 300)));
-  padding-bottom: calc(35px + (90 - 35) * ((100vw - 300px) / (1600 - 300)));
+  padding-top: calc(45px + (90 - 45) * ((100vw - 300px) / (1600 - 300)));
+  padding-bottom: calc(45px + (90 - 45) * ((100vw - 300px) / (1600 - 300)));
   min-height: calc(
     100vh - ((10px + (20 - 10) * ((100vw - 300px) / (1600 - 300))) * 2)
   );

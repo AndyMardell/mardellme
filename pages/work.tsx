@@ -18,7 +18,7 @@ const Work: NextPage = () => (
     </Head>
     <Container background>
       <Header />
-      <Wave>👋</Wave>
+      <Emoji>👋</Emoji>
       <p style={{ marginTop: 0, maxWidth: '800px' }}>
         As a developer at{' '}
         <a
@@ -38,19 +38,25 @@ const Work: NextPage = () => (
         Do you think I might be able to help you out? Let's talk:
       </p>
       <a href='mailto:andy@mardell.me' style={{ display: 'inline-block' }}>
-        ✉️ andy@mardell.me
+        <InlineEmoji>&rarr;</InlineEmoji> andy@mardell.me
       </a>
     </Container>
   </Layout>
 )
 
-const Wave = styled.p`
+const Emoji = styled.p`
   margin: 1.5em 0 0;
   font-size: 2rem;
 
   @media only screen and (min-width 750px) {
     margin-top: 3em;
   }
+`
+
+const InlineEmoji = styled.span`
+  font-size: 2rem;
+  vertical-align: -0.1em;
+  margin-right: 0.3em;
 `
 
 export default Work
