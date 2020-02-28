@@ -30,7 +30,9 @@ const Work: NextPage = () => (
         on alone.
       </p>
       <Portfolio />
-      <p style={{ maxWidth: '800px' }}>Think I can help you out? Lets talk: </p>
+      <p style={{ maxWidth: '800px' }}>
+        Do you think I might be able to help you out? Let's talk:
+      </p>
       <a href='mailto:andy@mardell.me' style={{ display: 'inline-block' }}>
         ✉️ andy@mardell.me
       </a>
