@@ -5,22 +5,22 @@ const projects = [
   {
     name: 'Aurochs Fitness',
     url: 'https://aurochs.fitness',
-    description: 'Design & Development'
+    description: 'Development, Branding & Design'
   },
   {
     name: 'Haywards',
     url: 'https://mrandmrshayward.com',
-    description: 'Design & Development'
+    description: 'Development & Design'
   },
   {
     name: 'Neocape',
     url: 'https://neocape.co.uk',
-    description: 'Design & Development'
+    description: 'Development, Branding & Design'
   },
   {
     name: 'Mr & Mrs Sign',
     url: 'https://mrandmrssign.com/',
-    description: 'Design & Development'
+    description: 'Development & Design'
   }
 ]
 
