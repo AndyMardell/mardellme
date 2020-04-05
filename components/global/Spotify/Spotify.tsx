@@ -1,4 +1,6 @@
 import React, { FunctionComponent } from 'react'
+import moment from 'moment'
+
 import { PlayingProps } from './types'
 
 const Spotify: FunctionComponent<PlayingProps> = ({ playing }) => {
@@ -6,12 +8,13 @@ const Spotify: FunctionComponent<PlayingProps> = ({ playing }) => {
     return null
   }
 
-  const { isPlaying, track, lastPlayed } = playing
+  const { isPlaying, track, lastPlayed: lastPlayedTime } = playing
+  const lastPlayed = moment(lastPlayedTime).fromNow()
 
   return (
     <div>
-      {isPlaying && '🔊 '} {track.artists[0].name} - {track.name}
-      {lastPlayed && ` (${lastPlayed})`}
+      {isPlaying ? '🔊 ' : '🔈 '} {track.name} - {track.artists[0].name}
+      {!isPlaying && lastPlayed && ` (${lastPlayed})`}
     </div>
   )
 }
