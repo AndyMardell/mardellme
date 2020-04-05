@@ -55,8 +55,8 @@ Home.getInitialProps = async () => {
       headers: { 'x-api-key': process.env.LAMBDA_TOKEN },
     })
 
-    const { data } = await playing.data
-    return { playing: data }
+    const playingData = await playing.data
+    return { playing: playingData }
   } catch (err) {
     console.error(err.message)
   }

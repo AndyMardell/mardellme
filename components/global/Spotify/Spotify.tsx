@@ -6,8 +6,6 @@ const Spotify: FunctionComponent<PlayingProps> = ({ playing }) => {
     return null
   }
 
-  console.log('playing', playing)
-
   const { isPlaying, track, lastPlayed } = playing
 
   return (
