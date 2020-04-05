@@ -1,3 +1,12 @@
 {
-  "name": "mardellme"
+  "name": "mardellme",
+  "build": {
+    "env": {
+      "SPOTIFY_ID": "@spotify-id",
+      "SPOTIFY_SECRET": "@spotify-secret",
+      "SPOTIFY_REDIRECT": "@spotify-redirect",
+      "LAMBDA_URL": "@lambda-url",
+      "LAMBDA_TOKEN": "@lambda-token"
+    }
+  }
 }

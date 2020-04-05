@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 400;
+    font-weight: 300;
     font-size: 18px;
     font-size: calc(15px + (18 - 15) * ((100vw - 400px) / (1600 - 400)));
   }
@@ -45,8 +45,8 @@ interface Props {
 
 const Layout: FunctionComponent<Props> = ({ children }) => {
   useGoogleFonts([
-    ['IBM Plex Sans', '400,500,600'],
-    ['Montserrat', '800']
+    ['IBM Plex Sans', '300,400,500,600'],
+    ['Montserrat', '800'],
   ])
 
   return (
