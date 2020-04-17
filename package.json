@@ -2,7 +2,6 @@
   "name": "mardellme-holding",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -16,6 +15,7 @@
     "@types/qs": "^6.9.1",
     "axios": "^0.19.2",
     "fontfaceobserver": "^2.1.0",
+    "graphql-request": "^1.8.2",
     "imagemin-optipng": "^7.1.0",
     "moment": "^2.24.0",
     "next": "^9.3.2",
@@ -23,8 +23,8 @@
     "next-optimized-images": "^2.5.4",
     "polished": "^3.4.2",
     "qs": "^6.9.3",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-spring": "^8.0.27",
     "styled-components": "^5.0.0",
     "use-google-fonts": "^1.0.1"

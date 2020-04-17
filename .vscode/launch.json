@@ -1,0 +1,24 @@
+{
+  "version": "0.2.0",
+  "configurations": [{
+      "type": "firefox",
+      "request": "launch",
+      "name": "Next: Firefox",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Next: Node",
+      "runtimeExecutable": "npm run now",
+      "runtimeArgs": ["NODE_OPTIONS='--inspect'"],
+      "port": 9229,
+      "console": "integratedTerminal"
+    }
+  ],
+  "compounds": [{
+    "name": "Next: Full",
+    "configurations": ["Next: Node", "Next: Firefox"]
+  }]
+}

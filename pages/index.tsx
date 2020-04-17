@@ -8,7 +8,6 @@ import Block from '../components/home/Block'
 import Links from '../components/home/Links'
 import { Subtitle } from '../components/global/Heading'
 import Header from '../components/global/Header'
-import Spotify from '../components/global/Spotify'
 import { PlayingProps } from '../components/global/Spotify/types'
 
 const Home: NextPage<PlayingProps> = ({ playing }) => (
@@ -43,25 +42,13 @@ const Home: NextPage<PlayingProps> = ({ playing }) => (
           Magento, cars, wife, guitar and coffee are all things I enjoy.
         </p>
         <Links />
-        <Spotify playing={playing} />
       </Block>
     </Container>
   </Layout>
 )
 
 Home.getInitialProps = async () => {
-  try {
-    const playing = await axios(`${process.env.LAMBDA_URL}`, {
-      headers: { 'x-api-key': process.env.LAMBDA_TOKEN },
-    })
-
-    const playingData = await playing.data
-    return { playing: playingData }
-  } catch (err) {
-    console.error(err.message)
-  }
-
-  return { playing: false }
+  return {}
 }
 
 export default Home

@@ -1,0 +1,23 @@
+type AuthTokens {
+  environment: String!
+  accessToken: String!
+  refreshToken: String
+  expires: String
+}
+
+type Track @embedded {
+  name: String!
+  artist: String!
+}
+
+type Status {
+  environment: String!
+  isPlaying: Boolean!
+  lastPlayed: String!
+  track: Track!
+}
+
+type Query {
+  getTokens(environment: String!): [AuthTokens!]
+  getStatus(environment: String!): [Status!]
+}

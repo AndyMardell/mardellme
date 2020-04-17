@@ -1,5 +1,4 @@
 import { NextPage, NextPageContext } from 'next'
-import { useRouter } from 'next/router'
 import axios from 'axios'
 import qs from 'qs'
 
@@ -42,7 +41,12 @@ Callback.getInitialProps = async (ctx: NextPageContext) => {
       }),
     })
 
-    const { access_token: accessToken, refresh_token: refreshToken } = res.data
+    const {
+      access_token: accessToken,
+      refresh_token: refreshToken,
+      expires_in: expires,
+    } = res.data
+
     const me = await axios('https://api.spotify.com/v1/me', {
       headers: { Authorization: `Bearer ${accessToken}` },
     })
@@ -52,9 +56,8 @@ Callback.getInitialProps = async (ctx: NextPageContext) => {
       throw new Error('You are not me')
     }
 
-    await axios(`${process.env.LAMBDA_URL}`, {
-      headers: { 'x-api-key': process.env.LAMBDA_TOKEN },
-      data: { accessToken, refreshToken },
+    await axios(`${process.env.SPOTIFY_REDIRECT}/api/spotify/update-tokens`, {
+      data: { accessToken, refreshToken, expires },
     })
 
     return { success: true, finished: true }
@@ -62,8 +65,6 @@ Callback.getInitialProps = async (ctx: NextPageContext) => {
     console.error(err.message)
     return { success: false, finished: true }
   }
-
-  return { success: false, finished: true }
 }
 
 export default Callback
