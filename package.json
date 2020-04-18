@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "analyze": "ANALYZE=true next build",
     "start": "next start",
     "now": "now dev"
   },
@@ -30,6 +31,7 @@
     "use-google-fonts": "^1.0.1"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^9.3.5",
     "@types/fontfaceobserver": "0.0.6",
     "@types/node": "^13.1.4",
     "@types/react": "^16.9.17",
