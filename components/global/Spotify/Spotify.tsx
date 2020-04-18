@@ -1,9 +1,9 @@
 import React, { FunctionComponent, useState, useEffect } from 'react'
 import moment from 'moment'
-
-import { Status } from '../../../types/spotify'
 import axios from 'axios'
 import styled from 'styled-components'
+
+import { Status } from '../../../types/spotify'
 import Divider from '../Divider'
 
 const Spotify: FunctionComponent = () => {
