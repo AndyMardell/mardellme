@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useState, useEffect } from 'react'
 import moment from 'moment'
 
-import { Status } from './types'
+import { Status } from '../../../types/spotify'
 import axios from 'axios'
 import styled from 'styled-components'
 import Divider from '../Divider'
@@ -9,9 +9,11 @@ import Divider from '../Divider'
 const Spotify: FunctionComponent = () => {
   const [status, setStatus] = useState<Status | false>(false)
 
-  const fetchStatus = async () => {
+  const fetchStatus = async (cacheOnly?: boolean) => {
     try {
-      const player = await axios('/api/spotify')
+      const player = await axios('/api/spotify', {
+        params: { cacheOnly },
+      })
       const { status: fetchedStatus } = await player.data
       setStatus(fetchedStatus)
     } catch (err) {
@@ -21,6 +23,7 @@ const Spotify: FunctionComponent = () => {
   }
 
   useEffect(() => {
+    fetchStatus(true)
     fetchStatus()
     const updateStatus = setInterval(() => fetchStatus(), 180000)
     return () => clearInterval(updateStatus)

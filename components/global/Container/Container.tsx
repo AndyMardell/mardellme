@@ -2,17 +2,12 @@ import { FunctionComponent } from 'react'
 import styled from 'styled-components'
 
 interface Props {
-  background?: boolean
   style?: object
 }
 
-const Container: FunctionComponent<Props> = ({
-  children,
-  background,
-  style,
-}) => {
+const Container: FunctionComponent<Props> = ({ children, style }) => {
   return (
-    <Wrapper background={background}>
+    <Wrapper>
       <Content style={style}>{children}</Content>
     </Wrapper>
   )
@@ -22,16 +17,6 @@ interface StyleProps {
 }
 
 const Wrapper = styled.div<StyleProps>`
-  ${({ background }) =>
-    background &&
-    `
-    background-image: url('${require('./images/shade.png')}');
-    background-size: 100%;
-    background-position: top center;
-    background-repeat: no-repeat;
-  `}
-
-  overflow: hidden;
   min-height: 100vh;
   width: 100%;
   box-sizing: border-box;
