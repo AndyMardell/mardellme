@@ -1,19 +1,37 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useState, useEffect } from 'react'
 import moment from 'moment'
 
-import { PlayingProps } from './types'
+import { Status } from './types'
+import axios from 'axios'
 
-const Spotify: FunctionComponent<PlayingProps> = ({ playing }) => {
-  if (!playing) {
+const Spotify: FunctionComponent = () => {
+  const [status, setStatus] = useState<Status | false>(false)
+
+  const fetchStatus = async () => {
+    try {
+      const player = await axios('/api/spotify')
+      const { status: fetchedStatus } = await player.data
+      setStatus(fetchedStatus)
+    } catch (err) {
+      console.log(err.message)
+      setStatus(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchStatus()
+  }, [])
+
+  if (!status) {
     return null
   }
 
-  const { isPlaying, track, lastPlayed: lastPlayedTime } = playing
+  const { isPlaying, track, lastPlayed: lastPlayedTime } = status
   const lastPlayed = moment(lastPlayedTime).fromNow()
 
   return (
     <div>
-      {isPlaying ? '🔊 ' : '🔈 '} {track.name} - {track.artists[0].name}
+      {isPlaying ? '🔊 ' : '🔈 '} {track.name} - {track.artist}
       {!isPlaying && lastPlayed && ` (${lastPlayed})`}
     </div>
   )

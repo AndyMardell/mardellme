@@ -1,47 +1,119 @@
-import { GraphQLClient } from 'graphql-request'
 import { NextApiRequest, NextApiResponse } from 'next'
-
-const query = `query GetLatestTokens {
-  getTokens(environment: "production") {
-    data {
-      _id
-      isPlaying
-      lastPlayed
-      track {
-        name
-        artist
-      }
-    }
-  }
-}`
+import axios from 'axios'
+import moment from 'moment'
 
 const GetStatus = async (_: NextApiRequest, res: NextApiResponse) => {
   try {
-    const client = new GraphQLClient('https://graphql.fauna.com/graphql', {
-      headers: {
-        Authorization: `Bearer ${process.env.FAUNADB_SECRET}`,
-      },
-    })
-    const { getStatus } = await client.request(query)
+    const cachedTokens = await axios(
+      `${process.env.SPOTIFY_REDIRECT}/api/spotify/get-tokens`
+    )
+    const {
+      tokens: { accessToken: cachedAccessToken, refreshToken, expires },
+    } = await cachedTokens.data
 
-    if (!getStatus.data.length) {
-      throw new Error('Tokens not found')
+    let accessToken: string = cachedAccessToken
+
+    if (moment(expires).isBefore(moment())) {
+      const refreshedToken = await refreshTokens(refreshToken)
+      if (refreshedToken?.accessToken) {
+        accessToken = refreshedToken.accessToken
+      }
     }
 
-    const { _id: id, isPlaying, lastPlayed, track } = getStatus.data[0]
+    try {
+      const currentlyPlaying = await axios(
+        'https://api.spotify.com/v1/me/player',
+        {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        }
+      )
+      const {
+        is_playing: isPlaying,
+        item: currentlyPlayingTrack,
+      } = await currentlyPlaying.data
 
-    res.status(200).json({
-      statusCode: 200,
-      status: {
-        id,
+      let playerData = {
+        lastPlayed: moment().toISOString(),
+        track: {
+          name: currentlyPlayingTrack.name,
+          artist: currentlyPlayingTrack.artists[0].name,
+        },
         isPlaying,
-        lastPlayed,
-        track,
-      },
-    })
+      }
+
+      if (!isPlaying) {
+        const recentlyPlayed = await axios(
+          'https://api.spotify.com/v1/me/player/recently-played',
+          {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          }
+        )
+        const { items } = await recentlyPlayed.data
+
+        if (!items.length) {
+          throw new Error('No recently played tracks found')
+        }
+
+        const recentlyPlayedData = items[0]
+
+        playerData = {
+          lastPlayed: recentlyPlayedData.played_at,
+          track: {
+            name: recentlyPlayedData.track.name,
+            artist: recentlyPlayedData.track.artists[0].name,
+          },
+          isPlaying,
+        }
+      }
+
+      await axios(`${process.env.SPOTIFY_REDIRECT}/api/spotify/update-status`, {
+        data: playerData,
+      })
+
+      res.status(200).json({
+        statusCode: 200,
+        status: {
+          isPlaying,
+          lastPlayed: playerData.lastPlayed,
+          track: playerData.track,
+        },
+      })
+    } catch (err) {
+      await refreshTokens(refreshToken)
+      throw new Error('Tokens refreshing for next time...')
+    }
   } catch (err) {
     console.log(err.message)
     res.status(500).json({ statusCode: 500, message: err.message })
+  }
+}
+
+const refreshTokens = async (refreshToken: string) => {
+  try {
+    const newTokens = await axios('https://accounts.spotify.com/api/token', {
+      method: 'POST',
+      headers: {
+        Authorization: `Basic ${Buffer.from(
+          process.env.SPOTIFY_ID + ':' + process.env.SPOTIFY_SECRET
+        ).toString('base64')}`,
+      },
+      data: {
+        grant_type: 'refresh_token',
+        refresh_token: refreshToken,
+      },
+    })
+    const { access_token, expires_in } = await newTokens.data
+
+    await axios(`${process.env.SPOTIFY_REDIRECT}/api/spotify/update-tokens`, {
+      data: { accessToken: access_token, expires: expires_in },
+    })
+
+    return {
+      accessToken: access_token,
+      expires: expires_in,
+    }
+  } catch (err) {
+    console.error('Error refreshing tokens', err.message)
   }
 }
 

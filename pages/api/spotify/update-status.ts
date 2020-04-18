@@ -1,17 +1,20 @@
 import { GraphQLClient } from 'graphql-request'
 import { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios'
+import moment from 'moment'
 
-const mutation = `mutation UpdateStatus(
+const mutation = `mutation updateStatus(
   $id: ID!,
   $lastPlayed: String!,
-  $name: String!
-  $artist: String!
+  $lastUpdated: String!,
+  $name: String!,
+  $artist: String!,
   $isPlaying: Boolean!
 ) {
   updateStatus(id: $id,
-    data:{
-      lastPlayed: $lastplayed,
+    data: {
+      lastPlayed: $lastPlayed,
+      lastUpdated: $lastUpdated,
       track: {
         artist: $artist,
         name: $name
@@ -39,14 +42,16 @@ const UpdateStatus = async (req: NextApiRequest, res: NextApiResponse) => {
     })
 
     const existingStatus = await axios(
-      `${process.env.SPOTIFY_REDIRECT}/api/spotify/get-status`
+      `${process.env.SPOTIFY_REDIRECT}/api/spotify/get-cached-status`
     )
     const { status } = await existingStatus.data
 
     await client.request(mutation, {
       id: status.id,
       lastPlayed,
-      track,
+      lastUpdated: moment().toISOString(),
+      name: track.name,
+      artist: track.artist,
       isPlaying,
     })
 
