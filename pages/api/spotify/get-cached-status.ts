@@ -26,7 +26,7 @@ const GetCachedStatus = async (_: NextApiRequest, res: NextApiResponse) => {
     const { getStatus } = await client.request(query)
 
     if (!getStatus.data.length) {
-      throw new Error('Tokens not found')
+      throw new Error('Current status not found')
     }
 
     const {
