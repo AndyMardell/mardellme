@@ -9,11 +9,9 @@ import Divider from '../Divider'
 const Spotify: FunctionComponent = () => {
   const [status, setStatus] = useState<Status | false>(false)
 
-  const fetchStatus = async (cacheOnly?: boolean) => {
+  const fetchStatus = async () => {
     try {
-      const player = await axios('/api/spotify', {
-        params: { cacheOnly },
-      })
+      const player = await axios('/api/spotify')
       const { status: fetchedStatus } = await player.data
       setStatus(fetchedStatus)
     } catch (err) {
@@ -23,14 +21,18 @@ const Spotify: FunctionComponent = () => {
   }
 
   useEffect(() => {
-    fetchStatus(true)
     fetchStatus()
     const updateStatus = setInterval(() => fetchStatus(), 180000)
     return () => clearInterval(updateStatus)
   }, [])
 
   if (!status) {
-    return null
+    return (
+      <>
+        <Divider small />
+        <NowPlaying>Loading embarrassing song data...</NowPlaying>
+      </>
+    )
   }
 
   const { isPlaying, track, lastPlayed: lastPlayedTime } = status

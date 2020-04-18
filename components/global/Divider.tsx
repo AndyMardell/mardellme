@@ -13,8 +13,8 @@ const StyledDivider = styled.div<Props>`
   height: 2px;
   background: #f5f5f5;
   width: 100%;
-  margin: 2rem 0;
-  ${({ small }) => small && `width: 50px;`};
+  margin: 3rem 0;
+  ${({ small }) => small && `width: 30px;`};
 `
 
 export default Divider
