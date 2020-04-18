@@ -20,6 +20,8 @@ const Spotify: FunctionComponent = () => {
 
   useEffect(() => {
     fetchStatus()
+    const updateStatus = setInterval(() => fetchStatus(), 180000)
+    return () => clearInterval(updateStatus)
   }, [])
 
   if (!status) {

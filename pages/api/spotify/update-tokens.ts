@@ -1,6 +1,7 @@
 import { GraphQLClient } from 'graphql-request'
 import { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios'
+import moment from 'moment'
 
 const mutation = `mutation updateAuthTokens(
   $id: ID!,
@@ -40,12 +41,13 @@ const UpdateTokens = async (req: NextApiRequest, res: NextApiResponse) => {
       id: tokens.id,
       accessToken,
       refreshToken,
-      expires: expires.toString(),
+      expires: moment()
+        .add(expires, 'seconds')
+        .toISOString(),
     })
 
     res.status(200).json({ statusCode: 200, message: 'Tokens saved' })
   } catch (err) {
-    console.log(err.message)
     res.status(500).json({ statusCode: 500, message: err.message })
   }
 }

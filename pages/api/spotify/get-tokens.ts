@@ -38,7 +38,6 @@ const GetTokens = async (_: NextApiRequest, res: NextApiResponse) => {
       },
     })
   } catch (err) {
-    console.log(err.message)
     res.status(500).json({ statusCode: 500, message: err.message })
   }
 }

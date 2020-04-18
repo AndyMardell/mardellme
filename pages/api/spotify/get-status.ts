@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
+import qs from 'qs'
 import axios from 'axios'
 import moment from 'moment'
 
@@ -35,13 +36,15 @@ const GetStatus = async (_: NextApiRequest, res: NextApiResponse) => {
       let playerData = {
         lastPlayed: moment().toISOString(),
         track: {
-          name: currentlyPlayingTrack.name,
-          artist: currentlyPlayingTrack.artists[0].name,
+          name: currentlyPlayingTrack ? currentlyPlayingTrack.name : '',
+          artist: currentlyPlayingTrack
+            ? currentlyPlayingTrack.artists[0].name
+            : '',
         },
-        isPlaying,
+        isPlaying: isPlaying ? true : false,
       }
 
-      if (!isPlaying) {
+      if (!playerData.isPlaying) {
         const recentlyPlayed = await axios(
           'https://api.spotify.com/v1/me/player/recently-played',
           {
@@ -62,7 +65,7 @@ const GetStatus = async (_: NextApiRequest, res: NextApiResponse) => {
             name: recentlyPlayedData.track.name,
             artist: recentlyPlayedData.track.artists[0].name,
           },
-          isPlaying,
+          isPlaying: playerData.isPlaying,
         }
       }
 
@@ -83,7 +86,6 @@ const GetStatus = async (_: NextApiRequest, res: NextApiResponse) => {
       throw new Error('Tokens refreshing for next time...')
     }
   } catch (err) {
-    console.log(err.message)
     res.status(500).json({ statusCode: 500, message: err.message })
   }
 }
@@ -93,14 +95,15 @@ const refreshTokens = async (refreshToken: string) => {
     const newTokens = await axios('https://accounts.spotify.com/api/token', {
       method: 'POST',
       headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
         Authorization: `Basic ${Buffer.from(
           process.env.SPOTIFY_ID + ':' + process.env.SPOTIFY_SECRET
         ).toString('base64')}`,
       },
-      data: {
+      data: qs.stringify({
         grant_type: 'refresh_token',
         refresh_token: refreshToken,
-      },
+      }),
     })
     const { access_token, expires_in } = await newTokens.data
 
@@ -113,7 +116,7 @@ const refreshTokens = async (refreshToken: string) => {
       expires: expires_in,
     }
   } catch (err) {
-    console.error('Error refreshing tokens', err.message)
+    console.error('Error refreshing tokens:', err)
   }
 }
 
