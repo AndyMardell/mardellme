@@ -5,23 +5,23 @@ const projects = [
   {
     name: 'Aurochs Fitness',
     url: 'https://aurochs.fitness',
-    description: 'Development, Branding & Design'
+    description: 'Development, Branding & Design',
   },
   {
     name: 'Haywards',
     url: 'https://mrandmrshayward.com',
-    description: 'Development & Design'
+    description: 'Development & Design',
   },
   {
     name: 'Neocape',
     url: 'https://neocape.co.uk',
-    description: 'Development, Branding & Design'
+    description: 'Development, Branding & Design',
   },
   {
     name: 'Mr & Mrs Sign',
     url: 'https://mrandmrssign.com/',
-    description: 'Development & Design'
-  }
+    description: 'Development & Design',
+  },
 ]
 
 const Portfolio: FunctionComponent = () => (
@@ -61,7 +61,6 @@ const Link = styled.a`
     padding-right: 0.2em;
     font-size: calc(30px + (70 - 30) * ((100vw - 300px) / (1600 - 300)));
     margin: 0;
-    opacity: 0.8;
   }
 
   p {
@@ -73,8 +72,7 @@ const Link = styled.a`
   @media only screen and (min-width: 600px) {
     &:hover {
       h3 {
-        color: #eee;
-        opacity: 1;
+        opacity: 0.5;
       }
 
       p {

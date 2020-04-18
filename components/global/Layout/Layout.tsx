@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 300;
     font-size: 18px;
     font-size: calc(15px + (18 - 15) * ((100vw - 400px) / (1600 - 400)));
+    color: #f5f5f5;
   }
 
   p {
@@ -20,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 1em 0;
 
     a {
-      border-bottom: 2px solid #c8c8c8;
+      border-bottom: 2px solid #f5f5f5;
     }
   }
 
@@ -33,7 +34,7 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
 
     &:hover {
-      color: #eee;
+      color: #fff;
       border-bottom: 2px solid #c8c8c8;
     }
   }

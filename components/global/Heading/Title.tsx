@@ -7,12 +7,18 @@ interface Props {
 }
 
 const Title: FunctionComponent<Props> = ({ children }) => (
-  <Link href='/'>
-    <StyledLink>
-      <StyledHeading>{children}</StyledHeading>
-    </StyledLink>
-  </Link>
+  <StyledContainer>
+    <Link href='/'>
+      <StyledLink>
+        <StyledHeading>{children}</StyledHeading>
+      </StyledLink>
+    </Link>
+  </StyledContainer>
 )
+
+const StyledContainer = styled.div`
+  margin-bottom: 3rem;
+`
 
 const StyledLink = styled.a`
   &:hover {
@@ -26,14 +32,16 @@ const StyledHeading = styled.h1`
   font-weight: 500;
   text-transform: lowercase;
   margin: 0;
-  color: #c8c8c8;
-
-  &:hover {
-    color: #eee;
-  }
+  color: #f5f5f5;
 
   span {
-    color: #686868;
+    color: #777777;
+  }
+
+  &:hover {
+    span {
+      color: #f5f5f5;
+    }
   }
 `
 

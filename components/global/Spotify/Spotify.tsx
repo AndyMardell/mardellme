@@ -3,6 +3,8 @@ import moment from 'moment'
 
 import { Status } from './types'
 import axios from 'axios'
+import styled from 'styled-components'
+import Divider from '../Divider'
 
 const Spotify: FunctionComponent = () => {
   const [status, setStatus] = useState<Status | false>(false)
@@ -32,11 +34,19 @@ const Spotify: FunctionComponent = () => {
   const lastPlayed = moment(lastPlayedTime).fromNow()
 
   return (
-    <div>
-      {isPlaying ? '🔊 ' : '🔈 '} {track.name} - {track.artist}
-      {!isPlaying && lastPlayed && ` (${lastPlayed})`}
-    </div>
+    <>
+      <Divider small />
+      <NowPlaying>
+        <strong>{isPlaying ? 'Now playing: ' : 'Last played: '}</strong>
+        {track.name} - {track.artist}
+        {!isPlaying && lastPlayed && ` (${lastPlayed})`}
+      </NowPlaying>
+    </>
   )
 }
+
+const NowPlaying = styled.div`
+  font-size: 0.9em;
+`
 
 export default Spotify
