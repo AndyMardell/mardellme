@@ -4,7 +4,8 @@
     "env": {
       "SPOTIFY_ID": "@spotify-id",
       "SPOTIFY_SECRET": "@spotify-secret",
-      "SPOTIFY_REDIRECT": "@spotify-redirect"
+      "SPOTIFY_REDIRECT": "@spotify-redirect",
+      "FAUNADB_SECRET": "@faunadb-secret"
     }
   }
 }
