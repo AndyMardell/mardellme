@@ -3,11 +3,12 @@ import { FunctionComponent } from 'react'
 
 interface Props {
   inline?: Boolean
+  right?: Boolean
 }
 
-const Emoji: FunctionComponent<Props> = ({ inline, children }) => {
+const Emoji: FunctionComponent<Props> = ({ inline, right, children }) => {
   if (inline) {
-    return <InlineEmoji>{children}</InlineEmoji>
+    return <InlineEmoji right={right}>{children}</InlineEmoji>
   }
 
   return <BlockEmoji>{children}</BlockEmoji>
@@ -22,10 +23,11 @@ const BlockEmoji = styled.p`
   }
 `
 
-const InlineEmoji = styled.span`
+const InlineEmoji = styled.span<Props>`
   font-size: 2rem;
   vertical-align: -0.1em;
-  margin-right: 0.3em;
+  ${({ right }) => !right && 'margin-right: 0.3em;'}
+  ${({ right }) => right && 'margin-left: 0.3em;'}
 `
 
 export default Emoji

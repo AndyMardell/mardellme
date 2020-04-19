@@ -22,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 1em 0;
 
     a {
+      padding-bottom: 0;
       border-bottom: 2px solid ${({ theme }) => theme.colors.white};
     }
   }
@@ -33,9 +34,10 @@ const GlobalStyle = createGlobalStyle`
   a {
     color: inherit;
     text-decoration: none;
+    padding-bottom: 2px;
 
     &:hover {
-      color: #fff;
+      padding-bottom: 0;
       border-bottom: 2px solid ${({ theme }) => theme.colors.white};
     }
   }

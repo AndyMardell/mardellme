@@ -7,6 +7,7 @@ import Portfolio from '../components/work/Portfolio'
 import Header from '../components/global/Header'
 import Emoji from '../components/global/Emoji'
 import Text from '../components/global/Text'
+import Link from 'next/link'
 
 const Work: NextPage = () => (
   <Layout>
@@ -20,6 +21,7 @@ const Work: NextPage = () => (
     <Container>
       <Header />
       <Text maxWidth={800}>
+        <Emoji>💪</Emoji>
         <p>
           As a developer at{' '}
           <a
@@ -38,12 +40,20 @@ const Work: NextPage = () => (
       <Portfolio />
       <Text maxWidth={800}>
         <p>Do you think I might be able to help you out? Let's talk:</p>
-        <a
-          href='mailto:andy@mardell.me'
-          style={{ display: 'inline-block', marginTop: '1rem' }}
-        >
-          <Emoji inline>&rarr;</Emoji> andy@mardell.me
-        </a>
+        <Link href='/contact'>
+          <a
+            style={{
+              display: 'inline-block',
+              marginTop: '1rem',
+              fontWeight: 500,
+            }}
+          >
+            Contact me{' '}
+            <Emoji inline right>
+              &rarr;
+            </Emoji>
+          </a>
+        </Link>
       </Text>
     </Container>
   </Layout>

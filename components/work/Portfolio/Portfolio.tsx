@@ -73,6 +73,7 @@ const Link = styled.a`
     &:hover {
       h3 {
         opacity: 0.5;
+        padding-bottom: 2px;
       }
 
       p {

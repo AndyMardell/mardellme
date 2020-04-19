@@ -1,9 +1,9 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 
 import Layout from '../components/global/Layout'
 import Container from '../components/global/Container'
-import Links from '../components/home/Links'
 import { Subtitle } from '../components/global/Heading'
 import Header from '../components/global/Header'
 import Spotify from '../components/global/Spotify'
@@ -29,7 +29,7 @@ const Home: NextPage = () => (
       </Subtitle>
       <Text maxWidth={600}>
         <Emoji>👋</Emoji>
-        <p style={{ marginTop: 0 }}>
+        <p>
           I'm Andy, a developer at{' '}
           <a
             href='https://sidigital.co'
@@ -41,7 +41,20 @@ const Home: NextPage = () => (
           React, Node.js, Gatsby, Next.js, Docker, Kubernetes, WordPress,
           Magento, cars, wife, guitar and coffee are all things I enjoy.
         </p>
-        <Links />
+        <Link href='/work'>
+          <a
+            style={{
+              display: 'inline-block',
+              marginTop: '1rem',
+              fontWeight: 500,
+            }}
+          >
+            View work{' '}
+            <Emoji inline right>
+              &rarr;
+            </Emoji>
+          </a>
+        </Link>
         <Divider small />
         <Spotify />
       </Text>
