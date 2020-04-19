@@ -1,10 +1,13 @@
 import React, { FunctionComponent, useState, useEffect } from 'react'
-import moment from 'moment'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
 import axios from 'axios'
 import styled from 'styled-components'
 
 import { Status } from '../../../types/spotify'
 import Divider from '../Divider'
+
+dayjs.extend(relativeTime)
 
 const Spotify: FunctionComponent = () => {
   const [status, setStatus] = useState<Status | false>(false)
@@ -36,7 +39,7 @@ const Spotify: FunctionComponent = () => {
   }
 
   const { isPlaying, track, lastPlayed: lastPlayedTime } = status
-  const lastPlayed = moment(lastPlayedTime).fromNow()
+  const lastPlayed = dayjs(lastPlayedTime).fromNow()
 
   return (
     <>

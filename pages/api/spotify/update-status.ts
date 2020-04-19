@@ -1,7 +1,7 @@
 import { GraphQLClient } from 'graphql-request'
 import { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios'
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 const mutation = `mutation updateStatus(
   $id: ID!,
@@ -49,7 +49,7 @@ const UpdateStatus = async (req: NextApiRequest, res: NextApiResponse) => {
     await client.request(mutation, {
       id: status.id,
       lastPlayed,
-      lastUpdated: moment().toISOString(),
+      lastUpdated: dayjs().toISOString(),
       name: track.name,
       artist: track.artist,
       isPlaying,

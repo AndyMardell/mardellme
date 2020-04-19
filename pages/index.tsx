@@ -9,7 +9,6 @@ import Header from '../components/global/Header'
 import Spotify from '../components/global/Spotify'
 import Text from '../components/global/Text'
 import Emoji from '../components/global/Emoji'
-import Divider from '../components/global/Divider'
 
 const Home: NextPage = () => (
   <Layout>
@@ -38,7 +37,7 @@ const Home: NextPage = () => (
           >
             Si digital.
           </a>{' '}
-          ReactJS, Node.js, Gatsby, Next.js, Docker, Kubernetes, WordPress,
+          React, Node.js, Gatsby, Next.js, Docker, Kubernetes, WordPress,
           Magento, cars, wife, guitar and coffee are all things I enjoy.
         </p>
         <Links />

@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import qs from 'qs'
 import axios from 'axios'
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 const GetStatus = async (_: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -14,7 +14,7 @@ const GetStatus = async (_: NextApiRequest, res: NextApiResponse) => {
 
     let accessToken: string = cachedAccessToken
 
-    if (moment(expires).isBefore(moment())) {
+    if (dayjs(expires).isBefore(dayjs())) {
       const refreshedToken = await refreshTokens(refreshToken)
       if (refreshedToken?.accessToken) {
         accessToken = refreshedToken.accessToken
@@ -34,7 +34,7 @@ const GetStatus = async (_: NextApiRequest, res: NextApiResponse) => {
       } = await currentlyPlaying.data
 
       let playerData = {
-        lastPlayed: moment().toISOString(),
+        lastPlayed: dayjs().toISOString(),
         track: {
           name: currentlyPlayingTrack ? currentlyPlayingTrack.name : '',
           artist: currentlyPlayingTrack

@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios'
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 const Spotify = async (_: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -10,9 +10,9 @@ const Spotify = async (_: NextApiRequest, res: NextApiResponse) => {
     const { status: cachedStatus } = await existingStatus.data
 
     if (
-      moment(cachedStatus.lastUpdated)
-        .add(3, 'minutes')
-        .isAfter(moment())
+      dayjs(cachedStatus.lastUpdated)
+        .add(3, 'minute')
+        .isAfter(dayjs())
     ) {
       return res.status(200).json({
         statusCode: 200,

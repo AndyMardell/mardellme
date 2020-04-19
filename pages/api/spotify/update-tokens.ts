@@ -1,7 +1,7 @@
 import { GraphQLClient } from 'graphql-request'
 import { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios'
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 const mutation = `mutation updateAuthTokens(
   $id: ID!,
@@ -41,8 +41,8 @@ const UpdateTokens = async (req: NextApiRequest, res: NextApiResponse) => {
       id: tokens.id,
       accessToken,
       refreshToken,
-      expires: moment()
-        .add(expires, 'seconds')
+      expires: dayjs()
+        .add(expires, 'second')
         .toISOString(),
     })
 

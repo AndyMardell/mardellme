@@ -8,11 +8,11 @@ interface Props {
 
 const Title: FunctionComponent<Props> = ({ children }) => (
   <StyledContainer>
-    <Link href='/'>
-      <StyledLink>
-        <StyledHeading>{children}</StyledHeading>
-      </StyledLink>
-    </Link>
+    <StyledHeading>
+      <Link href='/'>
+        <StyledLink>{children}</StyledLink>
+      </Link>
+    </StyledHeading>
   </StyledContainer>
 )
 
