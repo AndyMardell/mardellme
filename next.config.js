@@ -1,7 +1,10 @@
 const withPlugins = require('next-compose-plugins')
 const optimizedImages = require('next-optimized-images')
+const bundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
 
-module.exports = withPlugins([optimizedImages], {
+module.exports = withPlugins([optimizedImages, bundleAnalyzer], {
   env: {
     SPOTIFY_ID: process.env.SPOTIFY_ID,
     SPOTIFY_SECRET: process.env.SPOTIFY_SECRET,
