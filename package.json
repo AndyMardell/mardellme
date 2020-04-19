@@ -1,7 +1,8 @@
 {
   "name": "mardellme-holding",
   "version": "1.0.0",
-  "description": "",
+  "description": "A next.js excuse for a website",
+  "repository": "https://github.com/AndyMardell/mardellme",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -10,7 +11,7 @@
     "now": "now dev"
   },
   "keywords": [],
-  "author": "",
+  "author": "Andy Mardell <andy@mardell.me>",
   "license": "ISC",
   "dependencies": {
     "@next/bundle-analyzer": "^9.3.5",
@@ -28,8 +29,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-spring": "^8.0.27",
-    "styled-components": "^5.0.0",
-    "use-google-fonts": "^1.0.1"
+    "styled-components": "^5.0.0"
   },
   "devDependencies": {
     "@types/fontfaceobserver": "0.0.6",
