@@ -28,17 +28,20 @@ const Work: NextPage = () => (
             rel='noopener noreferrer'
           >
             Si digital
-          </a>{' '}
-          I have produced a variety of exciting websites over the past couple of
-          years. For obvious reasons, I can't showcase these projects here.
-          However, I like to keep myself busy; here are some projects I've taken
-          on alone.
+          </a>
+          {', '}I have produced a variety of exciting websites over the past
+          couple of years. For obvious reasons, I can't showcase these projects
+          here. However, I like to keep myself busy; here are some projects I've
+          taken on alone.
         </p>
       </Text>
       <Portfolio />
       <Text maxWidth={800}>
         <p>Do you think I might be able to help you out? Let's talk:</p>
-        <a href='mailto:andy@mardell.me' style={{ display: 'inline-block' }}>
+        <a
+          href='mailto:andy@mardell.me'
+          style={{ display: 'inline-block', marginTop: '1rem' }}
+        >
           <Emoji inline>&rarr;</Emoji> andy@mardell.me
         </a>
       </Text>

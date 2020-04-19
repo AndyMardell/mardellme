@@ -23,7 +23,7 @@ const StyledDiv = styled.h2<StyleProps>`
   margin: 1.2em 0 0.8em;
 
   @media only screen and (min-width: 900px) {
-    margin: 0.5em 0;
+    margin: 0.7em 0 0.5em;
     text-shadow: 7px 9px 0px rgba(255, 255, 255, 0.1);
   }
 
