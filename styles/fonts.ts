@@ -40,4 +40,4 @@ const fonts = () => `
   }
 `
 
-export default fonts
+export { fonts }

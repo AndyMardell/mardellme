@@ -14,7 +14,7 @@ interface StyleProps {
 }
 
 const StyledDiv = styled.h2<StyleProps>`
-  font-family: 'Montserrat', sans-serif;
+  font-family: ${({ theme }) => theme.font.family.heading};
   font-weight: 800;
   text-transform: uppercase;
   font-size: calc(33px + (110 - 33) * ((100vw - 300px) / (1600 - 300)));

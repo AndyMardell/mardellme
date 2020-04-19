@@ -11,9 +11,9 @@ const Divider: FunctionComponent<Props> = ({ small }) => (
 
 const StyledDivider = styled.div<Props>`
   height: 2px;
-  background: #f5f5f5;
   width: 100%;
   margin: 3rem 0;
+  background: ${({ theme }) => theme.colors.white};
   ${({ small }) => small && `width: 30px;`};
 `
 

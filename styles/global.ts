@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 import { normalize } from 'polished'
 
-import fonts from './fonts'
+import { fonts } from './fonts'
 
 const GlobalStyle = createGlobalStyle`
   ${normalize()}
@@ -10,9 +10,10 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'IBM Plex Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 300;
-    font-size: 18px;
-    font-size: calc(15px + (18 - 15) * ((100vw - 400px) / (1600 - 400)));
-    color: #f5f5f5;
+    font-size: ${({ theme }) => theme.font.size.base.max};
+    font-size: ${({ theme }) =>
+      `calc(${theme.font.size.base.min}px + (${theme.font.size.base.max} - ${theme.font.size.base.min}) * ((100vw - 400px) / (1600 - 400)))`};
+    color: ${({ theme }) => theme.colors.white};
   }
 
   p {
@@ -21,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 1em 0;
 
     a {
-      border-bottom: 2px solid #f5f5f5;
+      border-bottom: 2px solid ${({ theme }) => theme.colors.white};
     }
   }
 
@@ -35,9 +36,9 @@ const GlobalStyle = createGlobalStyle`
 
     &:hover {
       color: #fff;
-      border-bottom: 2px solid #c8c8c8;
+      border-bottom: 2px solid ${({ theme }) => theme.colors.white};
     }
   }
 `
 
-export default GlobalStyle
+export { GlobalStyle }

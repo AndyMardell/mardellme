@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { FunctionComponent, ReactNode } from 'react'
 
-import GlobalStyle from '../../../styles/global'
+import { GlobalStyle } from '../../../styles'
 
 interface Props {
   children?: ReactNode

@@ -20,10 +20,10 @@ const Wrapper = styled.div<StyleProps>`
   min-height: 100vh;
   width: 100%;
   box-sizing: border-box;
-  background-color: #1a1a1a;
+  background-color: ${({ theme }) => theme.colors.black};
   border-width: calc(10px + (20 - 10) * ((100vw - 300px) / (1600 - 300)));
   border-style: solid;
-  border-color: #f9f9f9;
+  border-color: ${({ theme }) => theme.colors.white};
 `
 
 const Content = styled.div`

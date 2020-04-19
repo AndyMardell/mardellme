@@ -14,7 +14,7 @@ const StyledDiv = styled.div`
   max-width: 480px;
 
   @media only screen and (min-width: 550px) {
-    border-left: 4px solid #c8c8c8;
+    border-left: 4px solid ${({ theme }) => theme.colors.white};
     padding-left: 2rem;
   }
 `
