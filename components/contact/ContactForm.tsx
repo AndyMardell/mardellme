@@ -1,7 +1,26 @@
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useEffect, useState, useRef } from 'react'
 import styled from 'styled-components'
 
 const ContactForm: FunctionComponent = () => {
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+  const [autoHeight, setAutoHeight] = useState<number>()
+
+  const autosizeTextarea = (textarea?: HTMLTextAreaElement) => {
+    if (textarea) {
+      console.log(textarea.scrollHeight)
+      setAutoHeight(textarea.scrollHeight)
+    }
+  }
+
+  useEffect(() => {
+    const textarea = textareaRef.current
+    if (textarea) {
+      textarea.addEventListener('keydown', () => autosizeTextarea(textarea))
+    }
+    return () =>
+      textarea?.removeEventListener('keydown', () => autosizeTextarea(textarea))
+  }, [textareaRef])
+
   return (
     <form>
       <FormElement>
@@ -19,7 +38,14 @@ const ContactForm: FunctionComponent = () => {
       </FormElement>
       <FormElement>
         <Label htmlFor='message'>Message:</Label>
-        <textarea id='message' name='Message' placeholder='Your message' />
+        <Textarea
+          ref={textareaRef}
+          id='message'
+          name='Message'
+          placeholder='Your message'
+          rows={1}
+          autoHeight={autoHeight}
+        />
       </FormElement>
       <button type='submit'>Send</button>
     </form>
@@ -50,8 +76,29 @@ const Input = styled.input`
   outline: none;
   font-size: ${({ theme }) => theme.font.size.big};
   color: ${({ theme }) => theme.colors.white};
-  border-bottom: 2px solid ${({ theme }) => theme.colors.grey};
-  padding: 0.2em 0;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.darkgrey};
+  padding: 0;
+  margin: 0.2em 0;
+`
+
+const Textarea = styled.textarea<{ autoHeight?: number | null }>`
+  display: block;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: ${({ theme }) => theme.font.size.big};
+  color: ${({ theme }) => theme.colors.white};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.darkgrey};
+  padding: 0;
+  margin: 0.2em 0;
+  overflow: hidden;
+
+  ${({ autoHeight }) =>
+    autoHeight &&
+    `
+    height: auto;
+    height: ${autoHeight}px;
+  `}
 `
 
 export default ContactForm
