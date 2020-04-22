@@ -45,6 +45,8 @@ const StyledNav = styled.nav`
     margin: 0;
 
     li {
+      display: inline;
+
       a {
         color: ${({ theme }) => theme.colors.grey};
         text-decoration: none;
@@ -54,14 +56,8 @@ const StyledNav = styled.nav`
           color: ${({ theme }) => theme.colors.white};
         }
       }
-    }
 
-    @media only screen and (min-width: 550px) {
-      li {
-        display: inline;
-      }
-
-      li:not(:last-child)::after {
+      &:not(:last-child)::after {
         color: ${({ theme }) => theme.colors.grey};
         content: '/';
         display: inline-block;

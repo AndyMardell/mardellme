@@ -2,6 +2,7 @@ import { FunctionComponent, useEffect, useState, useRef } from 'react'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
+import Emoji from '../global/Emoji'
 
 type Inputs = {
   name: string
@@ -55,7 +56,13 @@ const ContactForm: FunctionComponent = () => {
   }, [textareaRef])
 
   if (formStatus.submitted && !formStatus.error) {
-    return <div>Thanks for the message</div>
+    return (
+      <Thanks>
+        Thanks for the message – I'll get back to you soon. In the meantime you
+        can connect with me on the following platforms.
+        <Emoji bottom>👇</Emoji>
+      </Thanks>
+    )
   }
 
   return (
@@ -109,8 +116,14 @@ const ContactForm: FunctionComponent = () => {
   )
 }
 
-const Form = styled.form`
+const Thanks = styled.div`
   margin: 4rem 0;
+  font-weight: 500;
+  line-height: 1.8;
+`
+
+const Form = styled.form`
+  margin: 4rem 0 4.2rem;
 `
 
 const FormElement = styled.div`
@@ -204,7 +217,7 @@ const Button = styled.button`
   outline: none;
   border: 2px solid ${({ theme }) => theme.colors.darkgrey};
   color: ${({ theme }) => theme.colors.grey};
-  padding: 0.56em 2em 0.76em;
+  padding: 0.86em 2em 1.06em;
   margin-top: 1.2rem;
 
   &:hover,

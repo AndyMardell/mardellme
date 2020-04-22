@@ -10,7 +10,6 @@ import Nav, { NavLink } from '../components/global/Header/Nav'
 import ContactForm from '../components/contact/ContactForm'
 
 const links: NavLink[] = [
-  { name: 'Email', url: 'mailto:andy@mardell.me' },
   { name: 'GitHub', url: 'https://github.com/AndyMardell' },
   { name: 'Twitter', url: 'https://twitter.com/AndyMardell' },
   { name: 'LinkedIn', url: 'https://linkedin.com/in/andymardell' },
@@ -31,10 +30,10 @@ const Contact: NextPage = () => (
       <Content maxWidth={800}>
         <Emoji>🤙</Emoji>
         <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus
-          culpa maxime numquam fuga minus necessitatibus quos, cum iure? Dolor,
-          accusamus nulla. Unde harum nihil, autem perspiciatis nisi voluptates
-          architecto eveniet?
+          If you're interested in working with me, I'd love to hear from you. If
+          not, I'd still love to hear from you! Drop me a message and I'll get
+          back to you as soon as I can. You can also follow me around the
+          internet (stalker) using the links below.
         </p>
       </Content>
       <Content maxWidth={500}>

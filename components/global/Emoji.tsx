@@ -4,22 +4,28 @@ import { FunctionComponent } from 'react'
 interface Props {
   inline?: Boolean
   right?: Boolean
+  bottom?: Boolean
 }
 
-const Emoji: FunctionComponent<Props> = ({ inline, right, children }) => {
+const Emoji: FunctionComponent<Props> = ({
+  inline,
+  right,
+  bottom,
+  children,
+}) => {
   if (inline) {
     return <InlineEmoji right={right}>{children}</InlineEmoji>
   }
 
-  return <BlockEmoji>{children}</BlockEmoji>
+  return <BlockEmoji bottom={bottom}>{children}</BlockEmoji>
 }
 
-const BlockEmoji = styled.p`
-  margin: 1.5em 0 0;
+const BlockEmoji = styled.p<Props>`
+  ${({ bottom }) => (bottom ? `margin: 0 0 1.5em;` : `margin: 1.5em 0 0;`)}
   font-size: 2rem;
 
   @media only screen and (min-width 750px) {
-    margin-top: 3em;
+    ${({ bottom }) => (bottom ? `margin-bottom: 3em;` : `margin-top: 3em;`)}
   }
 `
 
