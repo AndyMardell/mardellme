@@ -12,9 +12,12 @@ type Inputs = {
 const ContactForm: FunctionComponent = () => {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const [autoHeight, setAutoHeight] = useState<number>()
-  const { register, handleSubmit, errors } = useForm<Inputs>()
+  const [sending, setSending] = useState(false)
+  const [sendingError, setSendingError] = useState('')
+  const { register, handleSubmit, errors, reset } = useForm<Inputs>()
 
   const onSubmit = async ({ name, email, message }: Inputs) => {
+    setSending(true)
     await axios(`${process.env.SPOTIFY_REDIRECT}/api/contact`, {
       method: 'POST',
       data: {
@@ -22,7 +25,18 @@ const ContactForm: FunctionComponent = () => {
         email,
         message,
       },
-    }).catch((err) => console.log(err))
+    })
+      .then(() => {
+        reset()
+        setSending(false)
+        setSendingError('')
+      })
+      .catch((err) => {
+        setSending(false)
+        setSendingError(
+          'There was an error sending your message, please try again.'
+        )
+      })
   }
 
   const autosizeTextarea = (textarea?: HTMLTextAreaElement) => {
@@ -33,15 +47,19 @@ const ContactForm: FunctionComponent = () => {
 
   useEffect(() => {
     const textarea = textareaRef.current
+    register(textarea, { required: true, min: 8 })
+
     if (textarea) {
       textarea.addEventListener('keydown', () => autosizeTextarea(textarea))
     }
+
     return () =>
       textarea?.removeEventListener('keydown', () => autosizeTextarea(textarea))
   }, [textareaRef])
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      {sendingError && <div>{sendingError}</div>}
       <FormElement>
         <Label htmlFor='name'>Full Name:</Label>
         <Input
@@ -67,17 +85,18 @@ const ContactForm: FunctionComponent = () => {
       <FormElement>
         <Label htmlFor='message'>Message:</Label>
         <Textarea
-          // ref={textareaRef}
           id='message'
           name='message'
           placeholder='Your message'
           rows={1}
           autoHeight={autoHeight}
-          ref={register({ required: true })}
+          ref={textareaRef}
         />
         {errors.message && <span>This field is required</span>}
       </FormElement>
-      <Button type='submit'>Send Message</Button>
+      <Button type='submit' disabled={sending}>
+        {sending ? 'Sending...' : 'Send Message'}
+      </Button>
     </Form>
   )
 }

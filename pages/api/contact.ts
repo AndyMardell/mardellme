@@ -27,7 +27,6 @@ const Contact = async (req: NextApiRequest, res: NextApiResponse) => {
 
     res.status(200).json({ statusCode: 200, message: 'Message sent' })
   } catch (err) {
-    console.log(err)
     res.status(500).json({ statusCode: 500, message: err.message })
   }
 }
