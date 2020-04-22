@@ -4,7 +4,7 @@ interface Props {
   maxWidth?: number
 }
 
-const Text: FunctionComponent<Props> = ({ maxWidth, children }) => {
+const Content: FunctionComponent<Props> = ({ maxWidth, children }) => {
   return (
     <div
       style={{
@@ -16,4 +16,4 @@ const Text: FunctionComponent<Props> = ({ maxWidth, children }) => {
   )
 }
 
-export default Text
+export default Content

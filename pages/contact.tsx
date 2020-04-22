@@ -5,7 +5,7 @@ import Layout from '../components/global/Layout'
 import Container from '../components/global/Container'
 import Header from '../components/global/Header'
 import Emoji from '../components/global/Emoji'
-import Text from '../components/global/Text'
+import Content from '../components/global/Content'
 import Nav, { NavLink } from '../components/global/Header/Nav'
 import ContactForm from '../components/contact/ContactForm'
 
@@ -28,7 +28,7 @@ const Contact: NextPage = () => (
     </Head>
     <Container>
       <Header />
-      <Text maxWidth={800}>
+      <Content maxWidth={800}>
         <Emoji>🤙</Emoji>
         <p>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus
@@ -36,10 +36,10 @@ const Contact: NextPage = () => (
           accusamus nulla. Unde harum nihil, autem perspiciatis nisi voluptates
           architecto eveniet?
         </p>
-      </Text>
-      <div style={{ margin: '3rem 0 3.5rem' }}>
+      </Content>
+      <Content maxWidth={500}>
         <ContactForm />
-      </div>
+      </Content>
       <Nav links={links} />
     </Container>
   </Layout>

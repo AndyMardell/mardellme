@@ -7,7 +7,7 @@ import Container from '../components/global/Container'
 import { Subtitle } from '../components/global/Heading'
 import Header from '../components/global/Header'
 import Spotify from '../components/global/Spotify'
-import Text from '../components/global/Text'
+import Content from '../components/global/Content'
 import Emoji from '../components/global/Emoji'
 import Divider from '../components/global/Divider'
 
@@ -27,7 +27,7 @@ const Home: NextPage = () => (
         <br />
         Developer
       </Subtitle>
-      <Text maxWidth={600}>
+      <Content maxWidth={600}>
         <Emoji>👋</Emoji>
         <p>
           I'm Andy, a developer at{' '}
@@ -38,8 +38,8 @@ const Home: NextPage = () => (
           >
             Si digital.
           </a>{' '}
-          React, Node.js, Gatsby, Next.js, Docker, Kubernetes, WordPress,
-          Magento, cars, wife, guitar and coffee are all things I enjoy.
+          React, Node.js, Gatsby, Next.js, Docker, WordPress, cars, wife, guitar
+          and coffee are all things I enjoy.
         </p>
         <Link href='/work'>
           <a
@@ -57,7 +57,7 @@ const Home: NextPage = () => (
         </Link>
         <Divider small />
         <Spotify />
-      </Text>
+      </Content>
     </Container>
   </Layout>
 )
