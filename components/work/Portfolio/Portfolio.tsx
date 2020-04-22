@@ -49,8 +49,8 @@ const Projects = styled.ul`
 
 const Link = styled.a`
   display: flex;
-  margin: 1rem 0;
   align-items: baseline;
+  line-height: normal;
   overflow: hidden;
 
   &:hover {
@@ -73,6 +73,7 @@ const Link = styled.a`
     &:hover {
       h3 {
         opacity: 0.5;
+        padding-bottom: 2px;
       }
 
       p {

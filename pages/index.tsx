@@ -1,14 +1,15 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 
 import Layout from '../components/global/Layout'
 import Container from '../components/global/Container'
-import Links from '../components/home/Links'
 import { Subtitle } from '../components/global/Heading'
 import Header from '../components/global/Header'
 import Spotify from '../components/global/Spotify'
-import Text from '../components/global/Text'
+import Content from '../components/global/Content'
 import Emoji from '../components/global/Emoji'
+import Divider from '../components/global/Divider'
 
 const Home: NextPage = () => (
   <Layout>
@@ -26,9 +27,9 @@ const Home: NextPage = () => (
         <br />
         Developer
       </Subtitle>
-      <Text maxWidth={600}>
+      <Content maxWidth={600}>
         <Emoji>👋</Emoji>
-        <p style={{ marginTop: 0 }}>
+        <p>
           I'm Andy, a developer at{' '}
           <a
             href='https://sidigital.co'
@@ -37,12 +38,26 @@ const Home: NextPage = () => (
           >
             Si digital.
           </a>{' '}
-          React, Node.js, Gatsby, Next.js, Docker, Kubernetes, WordPress,
-          Magento, cars, wife, guitar and coffee are all things I enjoy.
+          React, Node.js, Gatsby, Next.js, Docker, WordPress, cars, wife, guitar
+          and coffee are all things I enjoy.
         </p>
-        <Links />
+        <Link href='/work'>
+          <a
+            style={{
+              display: 'inline-block',
+              marginTop: '1rem',
+              fontWeight: 500,
+            }}
+          >
+            View work{' '}
+            <Emoji inline right>
+              &rarr;
+            </Emoji>
+          </a>
+        </Link>
+        <Divider small />
         <Spotify />
-      </Text>
+      </Content>
     </Container>
   </Layout>
 )

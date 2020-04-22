@@ -6,7 +6,8 @@ import Container from '../components/global/Container'
 import Portfolio from '../components/work/Portfolio'
 import Header from '../components/global/Header'
 import Emoji from '../components/global/Emoji'
-import Text from '../components/global/Text'
+import Content from '../components/global/Content'
+import Link from 'next/link'
 
 const Work: NextPage = () => (
   <Layout>
@@ -19,7 +20,8 @@ const Work: NextPage = () => (
     </Head>
     <Container>
       <Header />
-      <Text maxWidth={800}>
+      <Content maxWidth={800}>
+        <Emoji>💪</Emoji>
         <p>
           As a developer at{' '}
           <a
@@ -28,20 +30,31 @@ const Work: NextPage = () => (
             rel='noopener noreferrer'
           >
             Si digital
-          </a>{' '}
-          I have produced a variety of exciting websites over the past couple of
-          years. For obvious reasons, I can't showcase these projects here.
+          </a>
+          , I have produced a variety of exciting websites over the past couple
+          of years. For obvious reasons, I can't showcase these projects here.
           However, I like to keep myself busy; here are some projects I've taken
           on alone.
         </p>
-      </Text>
+      </Content>
       <Portfolio />
-      <Text maxWidth={800}>
+      <Content maxWidth={800}>
         <p>Do you think I might be able to help you out? Let's talk:</p>
-        <a href='mailto:andy@mardell.me' style={{ display: 'inline-block' }}>
-          <Emoji inline>&rarr;</Emoji> andy@mardell.me
-        </a>
-      </Text>
+        <Link href='/contact'>
+          <a
+            style={{
+              display: 'inline-block',
+              marginTop: '1rem',
+              fontWeight: 500,
+            }}
+          >
+            Contact me{' '}
+            <Emoji inline right>
+              &rarr;
+            </Emoji>
+          </a>
+        </Link>
+      </Content>
     </Container>
   </Layout>
 )

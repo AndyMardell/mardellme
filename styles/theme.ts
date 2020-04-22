@@ -11,11 +11,15 @@ const theme: DefaultTheme = {
         min: '15',
         max: '18',
       },
+      big: '1.7rem',
     },
   },
   colors: {
     white: '#f5f5f5',
+    grey: '#777777',
+    darkgrey: '#333333',
     black: '#1a1a1a',
+    red: '#FF7474',
   },
 }
 

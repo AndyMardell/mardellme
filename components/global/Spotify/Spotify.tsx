@@ -5,7 +5,6 @@ import axios from 'axios'
 import styled from 'styled-components'
 
 import { Status } from '../../../types/spotify'
-import Divider from '../Divider'
 
 dayjs.extend(relativeTime)
 
@@ -30,26 +29,20 @@ const Spotify: FunctionComponent = () => {
   }, [])
 
   if (!status) {
-    return (
-      <>
-        <Divider small />
-        <NowPlaying>Loading embarrassing song data...</NowPlaying>
-      </>
-    )
+    return <NowPlaying>Loading embarrassing song data...</NowPlaying>
   }
 
   const { isPlaying, track, lastPlayed: lastPlayedTime } = status
   const lastPlayed = dayjs(lastPlayedTime).fromNow()
 
   return (
-    <>
-      <Divider small />
-      <NowPlaying>
-        <strong>{isPlaying ? 'Now playing: ' : 'Last played: '}</strong>
-        {track.name} - {track.artist}
-        {!isPlaying && lastPlayed && ` (${lastPlayed})`}
-      </NowPlaying>
-    </>
+    <NowPlaying>
+      <strong style={{ marginRight: '.5em' }}>
+        {isPlaying ? 'Now playing: ' : 'Last played: '}
+      </strong>
+      {track.name} - {track.artist}
+      {!isPlaying && lastPlayed && ` (${lastPlayed})`}
+    </NowPlaying>
   )
 }
 
