@@ -4,22 +4,23 @@ const theme: DefaultTheme = {
   font: {
     family: {
       body: "'IBM Plex Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif",
-      heading: "'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+      heading: "'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif",
     },
     size: {
       base: {
         min: '15',
-        max: '18'
+        max: '18',
       },
-      big: '2rem'
-    }
+      big: '2rem',
+    },
   },
   colors: {
     white: '#f5f5f5',
     grey: '#777777',
     darkgrey: '#333333',
-    black: '#1a1a1a'
-  }
+    black: '#1a1a1a',
+    red: '#FF7474',
+  },
 }
 
 export { theme }

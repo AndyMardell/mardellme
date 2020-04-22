@@ -12,31 +12,30 @@ type Inputs = {
 const ContactForm: FunctionComponent = () => {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const [autoHeight, setAutoHeight] = useState<number>()
-  const [sending, setSending] = useState(false)
-  const [sendingError, setSendingError] = useState('')
   const { register, handleSubmit, errors, reset } = useForm<Inputs>()
+  const [formStatus, setFormStatus] = useState({
+    loading: false,
+    submitted: false,
+    error: false,
+  })
 
   const onSubmit = async ({ name, email, message }: Inputs) => {
-    setSending(true)
-    await axios(`${process.env.SPOTIFY_REDIRECT}/api/contact`, {
-      method: 'POST',
-      data: {
-        name,
-        email,
-        message,
-      },
-    })
-      .then(() => {
-        reset()
-        setSending(false)
-        setSendingError('')
+    try {
+      setFormStatus({ loading: true, submitted: false, error: false })
+      await axios(`${process.env.SPOTIFY_REDIRECT}/api/contact`, {
+        method: 'POST',
+        data: {
+          name,
+          email,
+          message,
+        },
       })
-      .catch((err) => {
-        setSending(false)
-        setSendingError(
-          'There was an error sending your message, please try again.'
-        )
-      })
+      reset()
+      setFormStatus({ loading: false, submitted: true, error: false })
+    } catch (err) {
+      console.error(err.message)
+      setFormStatus({ loading: false, submitted: true, error: true })
+    }
   }
 
   const autosizeTextarea = (textarea?: HTMLTextAreaElement) => {
@@ -48,28 +47,35 @@ const ContactForm: FunctionComponent = () => {
   useEffect(() => {
     const textarea = textareaRef.current
     register(textarea, { required: true, min: 8 })
-
     if (textarea) {
       textarea.addEventListener('keydown', () => autosizeTextarea(textarea))
     }
-
     return () =>
       textarea?.removeEventListener('keydown', () => autosizeTextarea(textarea))
   }, [textareaRef])
 
+  if (formStatus.submitted && !formStatus.error) {
+    return <div>Thanks for the message</div>
+  }
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      {sendingError && <div>{sendingError}</div>}
+      {formStatus.error && (
+        <Error>
+          There was an error sending your message, please try again.
+        </Error>
+      )}
       <FormElement>
         <Label htmlFor='name'>Full Name:</Label>
         <Input
           type='text'
           id='name'
           name='name'
+          error={errors.name ? true : false}
           placeholder='Your name'
           ref={register({ required: true })}
         />
-        {errors.name && <span>This field is required</span>}
+        {errors.name && <Error>This field is required</Error>}
       </FormElement>
       <FormElement>
         <Label htmlFor='email'>Email Address:</Label>
@@ -77,25 +83,27 @@ const ContactForm: FunctionComponent = () => {
           type='email'
           id='email'
           name='email'
+          error={errors.email ? true : false}
           placeholder='your@emailaddress.com'
           ref={register({ required: true })}
         />
-        {errors.email && <span>This field is required</span>}
+        {errors.email && <Error>This field is required</Error>}
       </FormElement>
       <FormElement>
         <Label htmlFor='message'>Message:</Label>
         <Textarea
           id='message'
           name='message'
+          error={errors.message ? true : false}
           placeholder='Your message'
           rows={1}
           autoHeight={autoHeight}
           ref={textareaRef}
         />
-        {errors.message && <span>This field is required</span>}
+        {errors.message && <Error>This field is required</Error>}
       </FormElement>
-      <Button type='submit' disabled={sending}>
-        {sending ? 'Sending...' : 'Send Message'}
+      <Button type='submit' disabled={formStatus.loading}>
+        {formStatus.loading ? 'Sending...' : 'Send Message'}
       </Button>
     </Form>
   )
@@ -123,7 +131,7 @@ const Label = styled.label`
   font-weight: 500;
 `
 
-const Input = styled.input`
+const Input = styled.input<{ error: boolean }>`
   background: transparent;
   width: 100%;
   border: none;
@@ -131,6 +139,7 @@ const Input = styled.input`
   font-size: ${({ theme }) => theme.font.size.big};
   color: ${({ theme }) => theme.colors.white};
   border-bottom: 2px solid ${({ theme }) => theme.colors.darkgrey};
+  ${({ error, theme }) => error && `border-bottom-color: ${theme.colors.red}`};
   padding: 0;
   margin: 0.2em 0;
 
@@ -138,12 +147,19 @@ const Input = styled.input`
     opacity: 0.3;
   }
 
-  &:focus {
-    border-bottom-color: ${({ theme }) => theme.colors.grey};
-  }
+  ${({ error, theme }) =>
+    !error &&
+    `
+    &:focus {
+      border-bottom-color: ${theme.colors.grey};
+    }
+  `}
 `
 
-const Textarea = styled.textarea<{ autoHeight?: number | null }>`
+const Textarea = styled.textarea<{
+  autoHeight?: number | null
+  error: boolean
+}>`
   display: block;
   width: 100%;
   background: transparent;
@@ -152,6 +168,7 @@ const Textarea = styled.textarea<{ autoHeight?: number | null }>`
   font-size: ${({ theme }) => theme.font.size.big};
   color: ${({ theme }) => theme.colors.white};
   border-bottom: 2px solid ${({ theme }) => theme.colors.darkgrey};
+  ${({ error, theme }) => error && `border-bottom-color: ${theme.colors.red}`};
   padding: 0;
   margin: 0.2em 0;
   overflow: hidden;
@@ -168,9 +185,18 @@ const Textarea = styled.textarea<{ autoHeight?: number | null }>`
     height: ${autoHeight}px;
   `}
 
-  &:focus {
-    border-bottom-color: ${({ theme }) => theme.colors.grey};
-  }
+  ${({ error, theme }) =>
+    !error &&
+    `
+    &:focus {
+      border-bottom-color: ${theme.colors.grey};
+    }
+  `}
+`
+
+const Error = styled.div`
+  margin: 0.5em 0;
+  color: ${({ theme }) => theme.colors.red};
 `
 
 const Button = styled.button`
