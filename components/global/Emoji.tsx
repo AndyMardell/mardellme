@@ -3,10 +3,11 @@ import { FunctionComponent } from 'react'
 import { useSpring, animated, config } from 'react-spring'
 
 interface Props {
-  inline?: Boolean
-  right?: Boolean
-  bottom?: Boolean
-  animate?: Boolean
+  inline?: boolean
+  right?: boolean
+  bottom?: boolean
+  animate?: string
+  origin?: string
 }
 
 const Emoji: FunctionComponent<Props> = ({
@@ -15,9 +16,10 @@ const Emoji: FunctionComponent<Props> = ({
   bottom,
   children,
   animate,
+  origin,
 }) => {
   const wave = useSpring({
-    config: { duration: 800 },
+    config: { duration: 1200 },
     from: { transform: 'rotate(0deg)' },
     to: async (next: any) => {
       while (1) {
@@ -27,9 +29,28 @@ const Emoji: FunctionComponent<Props> = ({
     },
   })
 
+  const flex = useSpring({
+    config: config.slow,
+    from: { transform: 'rotate(0deg)' },
+    to: async (next: any) => {
+      while (1) {
+        await next({ transform: 'rotate(-10deg)' })
+        await next({ transform: 'rotate(10deg)' })
+      }
+    },
+  })
+
+  const animations: Record<string, any> = { wave, flex }
+
   return (
     <Wrapper right={right} bottom={bottom} inline={inline}>
-      <StyledEmoji style={animate && wave}>{children}</StyledEmoji>
+      <StyledEmoji
+        style={animate && animations[animate]}
+        inline={inline}
+        origin={origin}
+      >
+        {children}
+      </StyledEmoji>
     </Wrapper>
   )
 }
@@ -47,12 +68,13 @@ const Wrapper = styled.div<Props>`
 `
 
 const StyledEmoji = styled(animated.span)<Props>`
-  ${({ right }) => (right ? 'margin-right: 0.3em;' : 'margin-left: 0.3em;')}
+  ${({ right, inline }) =>
+    right ? 'margin-right: 0.3em;' : inline && 'margin-left: 0.3em;'}
   display: inline-block;
   font-size: 2rem;
   vertical-align: -0.1em;
   cursor: default;
-  transform-origin: bottom right;
+  transform-origin: ${({ origin }) => (origin ? origin : 'bottom right')};
 `
 
 export default Emoji

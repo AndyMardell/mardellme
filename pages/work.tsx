@@ -21,7 +21,7 @@ const Work: NextPage = () => (
     <Container>
       <Header />
       <Content maxWidth={800}>
-        <Emoji>💪</Emoji>
+        <Emoji animate='flex'>💪</Emoji>
         <p>
           As a developer at{' '}
           <a

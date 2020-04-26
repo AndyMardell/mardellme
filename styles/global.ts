@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'IBM Plex Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 300;
-    font-size: ${({ theme }) => theme.font.size.base.max};
+    font-size: ${({ theme }) => theme.font.size.base.max}px;
     font-size: ${({ theme }) =>
       `calc(${theme.font.size.base.min}px + (${theme.font.size.base.max} - ${theme.font.size.base.min}) * ((100vw - 400px) / (1600 - 400)))`};
     color: ${({ theme }) => theme.colors.white};
