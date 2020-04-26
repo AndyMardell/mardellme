@@ -2,7 +2,9 @@ import { FunctionComponent, useEffect, useState, useRef } from 'react'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
+
 import Emoji from '../global/Emoji'
+import Button from '../contact/Button'
 
 type Inputs = {
   name: string
@@ -31,10 +33,11 @@ const ContactForm: FunctionComponent = () => {
           message,
         },
       })
-      reset()
-      setFormStatus({ loading: false, submitted: true, error: false })
+      setTimeout(() => {
+        reset()
+        setFormStatus({ loading: false, submitted: true, error: false })
+      }, 2000)
     } catch (err) {
-      console.error(err.message)
       setFormStatus({ loading: false, submitted: true, error: true })
     }
   }
@@ -53,7 +56,7 @@ const ContactForm: FunctionComponent = () => {
     }
     return () =>
       textarea?.removeEventListener('keydown', () => autosizeTextarea(textarea))
-  }, [textareaRef])
+  }, [])
 
   if (formStatus.submitted && !formStatus.error) {
     return (
@@ -109,8 +112,8 @@ const ContactForm: FunctionComponent = () => {
         />
         {errors.message && <Error>This field is required</Error>}
       </FormElement>
-      <Button type='submit' disabled={formStatus.loading}>
-        {formStatus.loading ? 'Sending...' : 'Send Message'}
+      <Button loading={formStatus.loading}>
+        {formStatus.loading ? 'Sending...' : 'Send'}
       </Button>
     </Form>
   )
@@ -210,23 +213,6 @@ const Textarea = styled.textarea<{
 const Error = styled.div`
   margin: 0.5em 0;
   color: ${({ theme }) => theme.colors.red};
-`
-
-const Button = styled.button`
-  background: transparent;
-  outline: none;
-  border: 2px solid ${({ theme }) => theme.colors.darkgrey};
-  color: ${({ theme }) => theme.colors.grey};
-  padding: 0.86em 2em 1.06em;
-  margin-top: 1.2rem;
-
-  &:hover,
-  &:focus {
-    background: ${({ theme }) => theme.colors.white};
-    border-color: ${({ theme }) => theme.colors.white};
-    color: ${({ theme }) => theme.colors.black};
-    cursor: pointer;
-  }
 `
 
 export default ContactForm
