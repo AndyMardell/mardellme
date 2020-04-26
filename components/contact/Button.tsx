@@ -60,22 +60,22 @@ const StyledButton = styled.button`
   &:focus:not(:disabled) {
     cursor: pointer;
     background: ${({ theme }) => theme.colors.lightgrey};
-    margin-top: 3px;
-    margin-bottom: -3px;
+    margin-top: 2px;
+    margin-bottom: -2px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   }
 
   &:loading:not(:disabled) {
-    margin-top: 5px;
-    margin-bottom: -5px;
+    margin-top: 3px;
+    margin-bottom: -3px;
     background: ${({ theme }) => theme.colors.grey};
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
 
   &:disabled {
     cursor: wait;
-    margin-top: 5px;
-    margin-bottom: -5px;
+    margin-top: 3px;
+    margin-bottom: -3px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
 `

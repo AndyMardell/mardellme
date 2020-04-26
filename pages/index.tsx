@@ -28,7 +28,7 @@ const Home: NextPage = () => (
         Developer
       </Subtitle>
       <Content maxWidth={600}>
-        <Emoji>👋</Emoji>
+        <Emoji animate>👋</Emoji>
         <p>
           I'm Andy, a developer at{' '}
           <a
