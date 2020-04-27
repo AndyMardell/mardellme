@@ -2,9 +2,10 @@ import { FunctionComponent, useEffect, useState, useRef } from 'react'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 import Emoji from '../global/Emoji'
-import Button from '../contact/Button'
+import Button from '../global/Button'
 
 type Inputs = {
   name: string
@@ -36,7 +37,7 @@ const ContactForm: FunctionComponent = () => {
       setTimeout(() => {
         reset()
         setFormStatus({ loading: false, submitted: true, error: false })
-      }, 2000)
+      }, 1000)
     } catch (err) {
       setFormStatus({ loading: false, submitted: true, error: true })
     }
@@ -112,7 +113,7 @@ const ContactForm: FunctionComponent = () => {
         />
         {errors.message && <Error>This field is required</Error>}
       </FormElement>
-      <Button loading={formStatus.loading}>
+      <Button loading={formStatus.loading} icon={faPaperPlane} animation='fly'>
         {formStatus.loading ? 'Sending...' : 'Send'}
       </Button>
     </Form>

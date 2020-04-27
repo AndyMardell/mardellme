@@ -1,6 +1,5 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
-import Link from 'next/link'
 
 import Layout from '../components/global/Layout'
 import Container from '../components/global/Container'
@@ -10,6 +9,7 @@ import Spotify from '../components/global/Spotify'
 import Content from '../components/global/Content'
 import Emoji from '../components/global/Emoji'
 import Divider from '../components/global/Divider'
+import Button from '../components/global/Button'
 
 const Home: NextPage = () => (
   <Layout>
@@ -41,20 +41,9 @@ const Home: NextPage = () => (
           React, Node.js, Gatsby, Next.js, Docker, WordPress, cars, wife, guitar
           and coffee are all things I enjoy.
         </p>
-        <Link href='/work'>
-          <a
-            style={{
-              display: 'inline-block',
-              marginTop: '1rem',
-              fontWeight: 500,
-            }}
-          >
-            View work{' '}
-            <Emoji inline right>
-              &rarr;
-            </Emoji>
-          </a>
-        </Link>
+        <Button href='/work' style={{ marginTop: '2rem' }}>
+          View my work
+        </Button>
         <Divider small />
         <Spotify />
       </Content>

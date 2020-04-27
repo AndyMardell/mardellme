@@ -7,7 +7,7 @@ import Portfolio from '../components/work/Portfolio'
 import Header from '../components/global/Header'
 import Emoji from '../components/global/Emoji'
 import Content from '../components/global/Content'
-import Link from 'next/link'
+import Button from '../components/global/Button'
 
 const Work: NextPage = () => (
   <Layout>
@@ -40,20 +40,9 @@ const Work: NextPage = () => (
       <Portfolio />
       <Content maxWidth={800}>
         <p>Do you think I might be able to help you out? Let's talk:</p>
-        <Link href='/contact'>
-          <a
-            style={{
-              display: 'inline-block',
-              marginTop: '1rem',
-              fontWeight: 500,
-            }}
-          >
-            Contact me{' '}
-            <Emoji inline right>
-              &rarr;
-            </Emoji>
-          </a>
-        </Link>
+        <Button href='/contact' style={{ marginTop: '2rem' }}>
+          Contact me
+        </Button>
       </Content>
     </Container>
   </Layout>
