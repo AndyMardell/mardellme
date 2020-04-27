@@ -19,16 +19,9 @@ const Nav: FunctionComponent<Props> = ({ links }) => (
       {links.map(({ name, url, internal }, i) => (
         <li key={i}>
           {internal ? (
-            <ActiveLink tabIndex={i + 1} href={url}>
-              {name}
-            </ActiveLink>
+            <ActiveLink href={url}>{name}</ActiveLink>
           ) : (
-            <a
-              tabIndex={i + 2}
-              target='_blank'
-              rel='noopener noreferrer'
-              href={url}
-            >
+            <a target='_blank' rel='noopener noreferrer' href={url}>
               {name}
             </a>
           )}

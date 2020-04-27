@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'IBM Plex Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 300;
-    font-size: ${({ theme }) => theme.font.size.base.max};
+    font-size: ${({ theme }) => theme.font.size.base.max}px;
     font-size: ${({ theme }) =>
       `calc(${theme.font.size.base.min}px + (${theme.font.size.base.max} - ${theme.font.size.base.min}) * ((100vw - 400px) / (1600 - 400)))`};
     color: ${({ theme }) => theme.colors.white};
@@ -22,7 +22,6 @@ const GlobalStyle = createGlobalStyle`
     margin: 1em 0;
 
     a {
-      padding-bottom: 0;
       border-bottom: 2px solid ${({ theme }) => theme.colors.white};
     }
   }
@@ -34,10 +33,8 @@ const GlobalStyle = createGlobalStyle`
   a {
     color: inherit;
     text-decoration: none;
-    padding-bottom: 2px;
 
     &:hover {
-      padding-bottom: 0;
       border-bottom: 2px solid ${({ theme }) => theme.colors.white};
     }
   }

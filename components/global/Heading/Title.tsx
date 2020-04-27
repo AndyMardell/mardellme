@@ -9,7 +9,7 @@ interface Props {
 const Title: FunctionComponent<Props> = ({ children }) => (
   <StyledHeading>
     <Link href='/'>
-      <StyledLink tabIndex={1}>{children}</StyledLink>
+      <StyledLink tabIndex={0}>{children}</StyledLink>
     </Link>
   </StyledHeading>
 )

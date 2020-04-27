@@ -28,7 +28,9 @@ const Contact: NextPage = () => (
     <Container>
       <Header />
       <Content maxWidth={800}>
-        <Emoji>🤙</Emoji>
+        <Emoji animate='wave' origin='bottom left'>
+          🤙
+        </Emoji>
         <p>
           If you're interested in working with me, I'd love to hear from you. If
           not, I'd still love to hear from you! Drop me a message and I'll get
