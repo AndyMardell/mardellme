@@ -151,7 +151,7 @@ const Input = styled.input<{ error: boolean }>`
   width: 100%;
   border: none;
   outline: none;
-  font-size: ${({ theme }) => theme.font.size.big};
+  font-size: ${({ theme }) => theme.font.size.medium};
   color: ${({ theme }) => theme.colors.white};
   border-bottom: 2px solid ${({ theme }) => theme.colors.darkgrey};
   ${({ error, theme }) => error && `border-bottom-color: ${theme.colors.red}`};
@@ -180,7 +180,7 @@ const Textarea = styled.textarea<{
   background: transparent;
   border: none;
   outline: none;
-  font-size: ${({ theme }) => theme.font.size.big};
+  font-size: ${({ theme }) => theme.font.size.medium};
   color: ${({ theme }) => theme.colors.white};
   border-bottom: 2px solid ${({ theme }) => theme.colors.darkgrey};
   ${({ error, theme }) => error && `border-bottom-color: ${theme.colors.red}`};

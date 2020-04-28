@@ -6,6 +6,7 @@ import Nav, { NavLink } from './Nav'
 
 const links: NavLink[] = [
   { name: 'Work', url: '/work', internal: true },
+  { name: 'Blog', url: '/blog', internal: true },
   { name: 'Contact', url: '/contact', internal: true },
 ]
 

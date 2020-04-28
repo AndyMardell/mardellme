@@ -12,6 +12,7 @@ declare module 'styled-components' {
           min: string
           max: string
         }
+        medium: string
         big: string
       }
     }

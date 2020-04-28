@@ -11,7 +11,8 @@ const theme: DefaultTheme = {
         min: '15',
         max: '18'
       },
-      big: '1.7rem'
+      medium: '1.7rem',
+      big: '2rem'
     }
   },
   colors: {

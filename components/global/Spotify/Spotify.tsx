@@ -37,9 +37,7 @@ const Spotify: FunctionComponent = () => {
 
   return (
     <NowPlaying>
-      <strong style={{ marginRight: '.5em' }}>
-        {isPlaying ? 'Now playing: ' : 'Last played: '}
-      </strong>
+      <Label>{isPlaying ? 'Now playing: ' : 'Last played: '}</Label>
       {track.name} - {track.artist}
       {!isPlaying && lastPlayed && ` (${lastPlayed})`}
     </NowPlaying>
@@ -48,6 +46,11 @@ const Spotify: FunctionComponent = () => {
 
 const NowPlaying = styled.div`
   font-size: 0.9em;
+  line-height: 1.8;
+`
+
+const Label = styled.strong`
+  margin-right: 0.5em;
 `
 
 export default Spotify
