@@ -27,9 +27,6 @@ const Button: FunctionComponent<Props> = ({
   animation,
   style,
 }) => {
-  const [pending, setPending] = useState(false)
-  useEffect(() => setPending(loading ? true : false), [loading])
-
   const fly = useSpring({
     config: config.default,
     from: {
@@ -37,12 +34,12 @@ const Button: FunctionComponent<Props> = ({
     },
     to: async (next: any) => {
       await next({
-        transform: pending
+        transform: loading
           ? 'rotate(20deg) translate(0px, 0px)'
           : 'rotate(0deg) translate(0px, 0px)',
       })
       await next({
-        transform: pending
+        transform: loading
           ? 'rotate(20deg) translate(50px, -50px)'
           : 'rotate(0deg) translate(0px, 0px)',
       })
@@ -63,7 +60,7 @@ const Button: FunctionComponent<Props> = ({
           </StyledLink>
         </Link>
       ) : (
-        <StyledButton disabled={pending}>
+        <StyledButton disabled={loading}>
           {children}
           {icon && (
             <Icon icon={icon} style={animation && animations[animation]} />

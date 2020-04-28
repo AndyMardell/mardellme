@@ -34,12 +34,10 @@ const ContactForm: FunctionComponent = () => {
           message,
         },
       })
-      setTimeout(() => {
-        reset()
-        setFormStatus({ loading: false, submitted: true, error: false })
-      }, 1000)
+      setFormStatus({ loading: false, submitted: true, error: false })
+      reset()
     } catch (err) {
-      setFormStatus({ loading: false, submitted: true, error: true })
+      setFormStatus({ loading: false, submitted: false, error: true })
     }
   }
 
@@ -59,7 +57,7 @@ const ContactForm: FunctionComponent = () => {
       textarea?.removeEventListener('keydown', () => autosizeTextarea(textarea))
   }, [])
 
-  if (formStatus.submitted && !formStatus.error) {
+  if (formStatus.submitted) {
     return (
       <Thanks>
         Thanks for the message – I'll get back to you soon. In the meantime you
