@@ -10,16 +10,22 @@ import Header from '../../components/global/Header'
 import Content from '../../components/global/Content'
 import dayjs from 'dayjs'
 
-interface Props {
-  postMeta: { [key: string]: any }
-  postContent: string
+export interface Post {
+  meta: { [key: string]: any }
+  content: string
 }
 
-const Post: NextPage<Props> = ({ postMeta, postContent }) => {
+interface Props {
+  post: Post
+}
+
+const Post: NextPage<Props> = ({ post }) => {
+  const { meta, content } = post
+
   return (
     <Layout>
       <Head>
-        <title>{postMeta.title} – Andy Mardell: Web Developer</title>
+        <title>{meta.title} – Andy Mardell: Web Developer</title>
         <meta
           name='description'
           content='Occasional ramblings of Web Developer Andy Mardell. Common subjects include React, Javascript, Next.js, Node, Docker, Devops and more.'
@@ -28,10 +34,10 @@ const Post: NextPage<Props> = ({ postMeta, postContent }) => {
       <Container>
         <Header />
         <Content maxWidth={800}>
-          <Title>{postMeta.title}</Title>
-          <Date>{dayjs(postMeta.date).format('DD MMM YYYY')}</Date>
+          <Title>{meta.title}</Title>
+          <Date>{dayjs(meta.date).format('DD MMM YYYY')}</Date>
           <div>
-            <ReactMarkdown source={postContent} />
+            <ReactMarkdown source={content} />
           </div>
         </Content>
       </Container>
@@ -41,12 +47,14 @@ const Post: NextPage<Props> = ({ postMeta, postContent }) => {
 
 Post.getInitialProps = async (ctx: NextPageContext) => {
   const { slug } = ctx.query
-  const content = await import(`../../posts/${slug}.md`)
-  const { data: postMeta, content: postContent } = matter(content.default)
+  const mdContent = await import(`../../posts/${slug}.md`)
+  const { data: meta, content } = matter(mdContent.default)
 
   return {
-    postMeta,
-    postContent,
+    post: {
+      meta,
+      content,
+    },
   }
 }
 
