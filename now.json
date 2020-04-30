@@ -5,7 +5,8 @@
       "SPOTIFY_ID": "@spotify-id",
       "SPOTIFY_SECRET": "@spotify-secret",
       "SPOTIFY_REDIRECT": "@spotify-redirect",
-      "FAUNADB_SECRET": "@faunadb-secret"
+      "FAUNADB_SECRET": "@faunadb-secret",
+      "MAILGUN_API": "@mailgun-api"
     }
   }
 }
