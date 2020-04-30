@@ -10,5 +10,6 @@ module.exports = withPlugins([optimizedImages, bundleAnalyzer], {
     SPOTIFY_SECRET: process.env.SPOTIFY_SECRET,
     SPOTIFY_REDIRECT: process.env.SPOTIFY_REDIRECT,
     FAUNADB_SECRET: process.env.FAUNADB_SECRET,
+    MAILGUN_API: process.env.MAILGUN_API,
   },
 })
