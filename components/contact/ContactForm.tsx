@@ -32,6 +32,7 @@ const ContactForm: FunctionComponent = () => {
           name,
           email,
           message,
+          config: 'mardellme',
         },
       })
       setTimeout(() => {
