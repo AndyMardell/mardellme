@@ -7,6 +7,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
 
+interface Props {
+  children: ReactNode
+  loading?: boolean
+  href?: string
+  icon?: IconDefinition
+  animation?: string
+  style?: CSSProperties
+}
+
 export default function Button({
   children,
   loading,
@@ -14,15 +23,7 @@ export default function Button({
   icon,
   animation,
   style
-}: {
-  loadingText?: string
-  loading?: boolean
-  href?: string
-  icon?: IconDefinition
-  animation?: string
-  style?: CSSProperties
-  children?: ReactNode
-}) {
+}: Props) {
   const [pending, setPending] = useState(false)
   useEffect(() => setPending(loading ? true : false), [loading])
 
@@ -53,11 +54,9 @@ export default function Button({
   return (
     <Wrapper style={style}>
       {href ? (
-        <Link href={href}>
-          <StyledLink>
-            {children} {icon && <Icon icon={icon} />}
-          </StyledLink>
-        </Link>
+        <StyledLink href={href}>
+          {children} {icon && <Icon icon={icon} />}
+        </StyledLink>
       ) : (
         <StyledButton disabled={pending}>
           {children}
@@ -118,7 +117,7 @@ const StyledButton = styled.button`
   ${({ theme }) => buttonLinkStyle(theme)}
 `
 
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
   ${({ theme }) => buttonLinkStyle(theme)}
 `
 

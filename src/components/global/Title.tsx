@@ -1,3 +1,5 @@
+'use client'
+
 import { FunctionComponent, ReactNode } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
@@ -8,13 +10,16 @@ interface Props {
 
 const Title: FunctionComponent<Props> = ({ children }) => (
   <StyledHeading>
-    <Link href='/'>
-      <StyledLink tabIndex={0}>{children}</StyledLink>
-    </Link>
+    <StyledLink
+      href="/"
+      tabIndex={0}
+    >
+      {children}
+    </StyledLink>
   </StyledHeading>
 )
 
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
   &:hover {
     border-bottom: none;
     cursor: pointer;

@@ -2,13 +2,12 @@
 
 import styled from 'styled-components'
 
-export default function Container({
-  children,
-  style
-}: {
+interface Props {
   children: React.ReactNode
   style?: React.CSSProperties
-}) {
+}
+
+export default function Container({ children, style }: Props) {
   return (
     <Wrapper>
       <Content style={style}>{children}</Content>

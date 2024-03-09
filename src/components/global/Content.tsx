@@ -1,12 +1,13 @@
+'use client'
+
 import { ReactNode } from 'react'
 
-export default function Content({
-  maxWidth,
-  children
-}: {
+interface Props {
   maxWidth?: number
-  children?: ReactNode
-}) {
+  children: ReactNode
+}
+
+export default function Content({ maxWidth, children }: Props) {
   return (
     <div
       style={{

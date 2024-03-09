@@ -1,10 +1,7 @@
 'use client'
 
-import { FunctionComponent } from 'react'
 import styled from 'styled-components'
-
-// import ActiveLink from '@/components/global/ActiveLink'
-import Link from 'next/link'
+import ActiveLink from '@/components/global/ActiveLink'
 
 export interface NavLink {
   name: string
@@ -16,29 +13,29 @@ interface Props {
   links: NavLink[]
 }
 
-const Nav: FunctionComponent<Props> = ({ links }) => (
-  <StyledNav>
-    <ul>
-      {links.map(({ name, url, internal }, i) => (
-        <li key={i}>
-          {internal ? (
-            // TODO: Fix ActiveLink
-            // <ActiveLink href={url}>{name}</ActiveLink>
-            <Link href={url}>{name}</Link>
-          ) : (
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={url}
-            >
-              {name}
-            </a>
-          )}
-        </li>
-      ))}
-    </ul>
-  </StyledNav>
-)
+export default function Nav({ links }: Props) {
+  return (
+    <StyledNav>
+      <ul>
+        {links.map(({ name, url, internal }, i) => (
+          <li key={i}>
+            {internal ? (
+              <ActiveLink href={url}>{name}</ActiveLink>
+            ) : (
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={url}
+              >
+                {name}
+              </a>
+            )}
+          </li>
+        ))}
+      </ul>
+    </StyledNav>
+  )
+}
 
 const StyledNav = styled.nav`
   ul {
@@ -68,5 +65,3 @@ const StyledNav = styled.nav`
     }
   }
 `
-
-export default Nav
