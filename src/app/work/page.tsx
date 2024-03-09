@@ -1,17 +1,13 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
-import Container from '@/components/global/Container'
 import Portfolio from '@/components/work/Portfolio'
-import Header from '@/components/global/Header'
 import Emoji from '@/components/global/Emoji'
 import Content from '@/components/global/Content'
 import Text from '@/components/global/Text'
 import Sup from '@/components/global/Sup'
-import Button from '@/components/global/Button'
 
 const Work: NextPage = () => (
-  <Container>
-    <Header />
+  <>
     <Content maxWidth={800}>
       <Emoji animate="flex">💪</Emoji>
       <p>
@@ -45,7 +41,7 @@ const Work: NextPage = () => (
         <Sup>3</Sup> I'm not a doctor, but I do like to babble
       </Text>
     </Content>
-  </Container>
+  </>
 )
 
 export default Work
