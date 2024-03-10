@@ -1,13 +1,13 @@
 import dayjs from 'dayjs'
 import { NextResponse } from 'next/server'
 import { kv } from '@vercel/kv'
-import { Status } from '@/components/global/Spotify'
+import { Status } from '@/components/spotify/Spotify'
 
 export async function GET() {
   try {
     const cachedStatus = await kv.get<Status>('spotify:status')
 
-    if (dayjs(cachedStatus?.lastUpdated).add(3, 'minute').isAfter(dayjs())) {
+    if (dayjs(cachedStatus?.lastUpdated).add(1, 'minute').isAfter(dayjs())) {
       return NextResponse.json({
         status: cachedStatus
       })
@@ -35,30 +35,43 @@ export async function GET() {
     }
 
     try {
-      const { is_playing: isPlaying, item: currentlyPlayingTrack } =
-        await fetch('https://api.spotify.com/v1/me/player', {
-          headers: {
-            Authorization: `Bearer ${accessToken}`
-          }
-        }).then((res) => res.json())
+      const player = await fetch('https://api.spotify.com/v1/me/player', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
 
-      let playerData = {
-        lastPlayed: dayjs().toISOString(),
-        track: {
-          name: currentlyPlayingTrack?.name,
-          artist: currentlyPlayingTrack && currentlyPlayingTrack.artists[0].name
-        },
-        isPlaying,
-        lastUpdated: dayjs().toISOString()
-      }
+      // TODO: Tidy this mess
+      let playerData
+      if (player.status !== 204) {
+        const { is_playing: isPlaying, item: currentlyPlayingTrack } =
+          await player.json()
 
-      if (!isPlaying) {
+        console.log(
+          'Currently playing track:',
+          isPlaying,
+          currentlyPlayingTrack
+        )
+
+        playerData = {
+          lastPlayed: dayjs().toISOString(),
+          track: {
+            name: currentlyPlayingTrack?.name,
+            artist:
+              currentlyPlayingTrack && currentlyPlayingTrack.artists[0].name
+          },
+          isPlaying,
+          lastUpdated: dayjs().toISOString()
+        }
+      } else {
         const { items } = await fetch(
           'https://api.spotify.com/v1/me/player/recently-played',
           {
             headers: { Authorization: `Bearer ${accessToken}` }
           }
         ).then((res) => res.json())
+
+        console.log('Recently played tracks:', items)
 
         if (!items.length) {
           console.log('No recently played tracks found')

@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import styled from 'styled-components'
+import Playing from '@/components/spotify/Playing'
+import Text from '@/components/global/Text'
 
 export interface Status {
   isPlaying: boolean
@@ -47,15 +49,20 @@ export default function Spotify() {
 
   return (
     <NowPlaying>
-      <strong style={{ marginRight: '.5em' }}>
-        {isPlaying ? 'Now playing: ' : 'Last played: '}
-      </strong>
-      {track.name} - {track.artist}
-      {!isPlaying && lastPlayed && ` (${lastPlayed})`}
+      {isPlaying && <Playing />}
+      <Text>
+        <strong style={{ marginRight: '.5em' }}>
+          {isPlaying ? 'Now playing: ' : 'Last played: '}
+        </strong>
+        {track.name} - {track.artist}
+        {!isPlaying && lastPlayed && ` (${lastPlayed})`}
+      </Text>
     </NowPlaying>
   )
 }
 
 const NowPlaying = styled.div`
   font-size: 0.9em;
+  display: flex;
+  align-items: center;
 `

@@ -1,7 +1,7 @@
 'use client'
 
-import SpotifyCallback from '@/components/global/SpotifyCallback'
 import { Suspense } from 'react'
+import SpotifyCallback from '@/components/spotify/SpotifyCallback'
 
 export default function Callback() {
   return (

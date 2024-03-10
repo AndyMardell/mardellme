@@ -4,7 +4,7 @@ import Emoji from '@/components/global/Emoji'
 import Divider from '@/components/global/Divider'
 import Button from '@/components/global/Button'
 import Link from 'next/link'
-import Spotify from '@/components/global/Spotify'
+import Spotify from '@/components/spotify/Spotify'
 
 export default function Home() {
   return (

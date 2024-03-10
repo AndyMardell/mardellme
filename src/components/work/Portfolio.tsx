@@ -46,7 +46,7 @@ export default function Portfolio() {
             href={project.url}
           >
             <h3>{project.name}</h3>
-            <Text>
+            <Text $grey>
               {project.description}
               {project.footnote && <Sup>{project.footnote}</Sup>}
             </Text>
