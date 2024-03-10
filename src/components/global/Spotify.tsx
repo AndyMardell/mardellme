@@ -1,53 +1,61 @@
-// import React, { FunctionComponent, useState, useEffect } from 'react'
-// import dayjs from 'dayjs'
-// import relativeTime from 'dayjs/plugin/relativeTime'
-// import axios from 'axios'
-// import styled from 'styled-components'
+'use client'
 
-// import { Status } from '../../../types/spotify'
+import { useState, useEffect } from 'react'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import styled from 'styled-components'
 
-// dayjs.extend(relativeTime)
+export interface Status {
+  isPlaying: boolean
+  track: {
+    artist: string
+    name: string
+  }
+  lastPlayed?: string
+  lastUpdated: string
+}
 
-// const Spotify: FunctionComponent = () => {
-//   const [status, setStatus] = useState<Status | false>(false)
+dayjs.extend(relativeTime)
 
-//   const fetchStatus = async () => {
-//     try {
-//       const player = await axios('/api/spotify')
-//       const { status: fetchedStatus } = await player.data
-//       setStatus(fetchedStatus)
-//     } catch (err) {
-//       console.log(err.message)
-//       setStatus(false)
-//     }
-//   }
+export default function Spotify() {
+  const [status, setStatus] = useState<Status | false>(false)
 
-//   useEffect(() => {
-//     fetchStatus()
-//     const updateStatus = setInterval(() => fetchStatus(), 180000)
-//     return () => clearInterval(updateStatus)
-//   }, [])
+  const fetchStatus = async () => {
+    try {
+      const { status: fetchedStatus } = await fetch(
+        `${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/spotify/status`
+      ).then((res) => res.json())
+      setStatus(fetchedStatus)
+    } catch (err: any) {
+      console.log(err.message)
+      setStatus(false)
+    }
+  }
 
-//   if (!status) {
-//     return <NowPlaying>Loading embarrassing song data...</NowPlaying>
-//   }
+  useEffect(() => {
+    fetchStatus()
+    const updateStatus = setInterval(() => fetchStatus(), 180000)
+    return () => clearInterval(updateStatus)
+  }, [])
 
-//   const { isPlaying, track, lastPlayed: lastPlayedTime } = status
-//   const lastPlayed = dayjs(lastPlayedTime).fromNow()
+  if (!status) {
+    return <NowPlaying>Loading embarrassing song data...</NowPlaying>
+  }
 
-//   return (
-//     <NowPlaying>
-//       <strong style={{ marginRight: '.5em' }}>
-//         {isPlaying ? 'Now playing: ' : 'Last played: '}
-//       </strong>
-//       {track.name} - {track.artist}
-//       {!isPlaying && lastPlayed && ` (${lastPlayed})`}
-//     </NowPlaying>
-//   )
-// }
+  const { isPlaying, track, lastPlayed: lastPlayedTime } = status
+  const lastPlayed = dayjs(lastPlayedTime).fromNow()
 
-// const NowPlaying = styled.div`
-//   font-size: 0.9em;
-// `
+  return (
+    <NowPlaying>
+      <strong style={{ marginRight: '.5em' }}>
+        {isPlaying ? 'Now playing: ' : 'Last played: '}
+      </strong>
+      {track.name} - {track.artist}
+      {!isPlaying && lastPlayed && ` (${lastPlayed})`}
+    </NowPlaying>
+  )
+}
 
-// export default Spotify
+const NowPlaying = styled.div`
+  font-size: 0.9em;
+`
