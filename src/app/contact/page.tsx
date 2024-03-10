@@ -5,9 +5,9 @@ import ContactForm from '@/components/contact/ContactForm'
 
 const links: NavLink[] = [
   { name: 'GitHub', url: 'https://github.com/AndyMardell' },
-  { name: 'Twitter', url: 'https://twitter.com/AndyMardell' },
+  { name: 'X', url: 'https://x.com/AndyMardell' },
   { name: 'LinkedIn', url: 'https://linkedin.com/in/andymardell' },
-  { name: 'Instagram', url: 'https://instagram.com/AndyMardell' }
+  { name: 'Instagram', url: 'https://instagram.com/the.admrl' }
 ]
 
 export default function () {

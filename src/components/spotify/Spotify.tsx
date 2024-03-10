@@ -25,7 +25,12 @@ export default function Spotify() {
   const fetchStatus = async () => {
     try {
       const { status: fetchedStatus } = await fetch(
-        `${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/spotify/status`
+        `${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/spotify/status`,
+        {
+          headers: {
+            'Cache-Control': 'no-cache'
+          }
+        }
       ).then((res) => res.json())
       setStatus(fetchedStatus)
     } catch (err: any) {

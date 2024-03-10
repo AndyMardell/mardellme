@@ -6,8 +6,7 @@ import { Status } from '@/components/spotify/Spotify'
 export async function GET() {
   try {
     const cachedStatus = await kv.get<Status>('spotify:status')
-
-    if (dayjs(cachedStatus?.lastUpdated).add(1, 'minute').isAfter(dayjs())) {
+    if (dayjs(cachedStatus?.lastUpdated).add(3, 'minute').isAfter(dayjs())) {
       return NextResponse.json({
         status: cachedStatus
       })
@@ -43,15 +42,9 @@ export async function GET() {
 
       // TODO: Tidy this mess
       let playerData
-      if (player.status !== 204) {
+      if (player.status === 200) {
         const { is_playing: isPlaying, item: currentlyPlayingTrack } =
           await player.json()
-
-        console.log(
-          'Currently playing track:',
-          isPlaying,
-          currentlyPlayingTrack
-        )
 
         playerData = {
           lastPlayed: dayjs().toISOString(),
@@ -71,24 +64,23 @@ export async function GET() {
           }
         ).then((res) => res.json())
 
-        console.log('Recently played tracks:', items)
-
         if (!items.length) {
-          console.log('No recently played tracks found')
           throw new Error('No recently played tracks found')
         }
 
-        const recentlyPlayedData = items[0]
-
         playerData = {
-          lastPlayed: recentlyPlayedData.played_at,
+          lastPlayed: items[0].played_at,
           track: {
-            name: recentlyPlayedData.track.name,
-            artist: recentlyPlayedData.track.artists[0].name
+            name: items[0].track.name,
+            artist: items[0].track.artists[0].name
           },
           isPlaying: false,
           lastUpdated: dayjs().toISOString()
         }
+      }
+
+      if (!playerData) {
+        throw new Error('No player data found')
       }
 
       await kv.set('spotify:status', JSON.stringify(playerData))
