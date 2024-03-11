@@ -1,10 +1,16 @@
-import { NextPage } from 'next'
+import type { NextPage, Metadata } from 'next'
 import Link from 'next/link'
 import Portfolio from '@/components/work/Portfolio'
 import Emoji from '@/components/global/Emoji'
 import Content from '@/components/global/Content'
 import Text from '@/components/global/Text'
 import Sup from '@/components/global/Sup'
+
+export const metadata: Metadata = {
+  title: 'Work – mardell.me',
+  description:
+    'A collection of personal projects – some sillier than others, most born from curiosity'
+}
 
 const Work: NextPage = () => (
   <>
