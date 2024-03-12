@@ -3,6 +3,8 @@ import { NextResponse } from 'next/server'
 import { kv } from '@vercel/kv'
 import { Status } from '@/components/spotify/Spotify'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
   try {
     const cachedStatus = await kv.get<Status>('spotify:status')
@@ -40,7 +42,10 @@ export async function GET() {
         }
       })
 
-      // TODO: Tidy this mess
+      if (player.status === 401) {
+        throw new Error('Unauthorized')
+      }
+
       let playerData
       if (player.status === 200) {
         const { is_playing: isPlaying, item: currentlyPlayingTrack } =
