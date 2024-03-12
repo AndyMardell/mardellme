@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import Providers from '@/app/providers'
 import { GlobalStyle } from '@/styles/global'
 import Container from '@/components/global/Container'
@@ -25,6 +27,8 @@ export default function RootLayout({ children }: Readonly<Props>) {
             {children}
           </Container>
         </Providers>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
