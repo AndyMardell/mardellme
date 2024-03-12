@@ -17,7 +17,7 @@ const StyledDiv = styled.h2<{
 }>`
   font-family: ${({ theme }) => theme.font.family.heading};
   font-weight: 800;
-  font-size: calc(30px + (70 - 30) * ((100vw - 300px) / (1600 - 300)));
+  font-size: calc(30px + (60 - 30) * ((100vw - 300px) / (1600 - 300)));
   text-shadow: 4px 5px 0px rgba(255, 255, 255, 0.1);
   margin: 2em 0 0.8em;
 
@@ -32,7 +32,7 @@ const StyledDiv = styled.h2<{
 
   ${({ small }) =>
     small &&
-    `font-size: calc(25px + (80 - 25) * ((100vw - 300px) / (1600 - 300)));`}
+    `font-size: calc(25px + (50 - 25) * ((100vw - 300px) / (1600 - 300)));`}
 
   a {
     color: ${({ theme }) => theme.colors.sipink};
