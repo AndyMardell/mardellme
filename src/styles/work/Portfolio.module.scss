@@ -1,0 +1,32 @@
+.projects {
+  list-style: none;
+  margin: 3rem 0;
+  padding: 0;
+
+  @media only screen and (min-width: 750px) {
+    margin: 5rem;
+  }
+
+  a {
+    line-height: normal;
+    overflow: hidden;
+    color: $color-midgrey;
+
+    &:hover {
+      border-bottom: none;
+      color: $color-white;
+    }
+
+    h3 {
+      padding-right: 0.2em;
+      font-size: calc(20px + (50 - 20) * ((100vw - 300px) / (1600 - 300)));
+      margin: 0;
+    }
+
+    p {
+      margin: 0;
+      margin-bottom: 2rem;
+      color: inherit;
+    }
+  }
+}

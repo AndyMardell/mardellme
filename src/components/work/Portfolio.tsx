@@ -1,8 +1,6 @@
-'use client'
-
-import styled from 'styled-components'
 import Sup from '@/components/global/Sup'
 import Text from '@/components/global/Text'
+import style from '@/styles/work/Portfolio.module.scss'
 
 const projects = [
   {
@@ -37,10 +35,10 @@ const projects = [
 
 export default function Portfolio() {
   return (
-    <Projects>
+    <ul className={style.projects}>
       {projects.map((project, i) => (
         <li key={i}>
-          <Link
+          <a
             target="_blank"
             rel="noopener noreferrer"
             href={project.url}
@@ -50,42 +48,9 @@ export default function Portfolio() {
               {project.description}
               {project.footnote && <Sup>{project.footnote}</Sup>}
             </Text>
-          </Link>
+          </a>
         </li>
       ))}
-    </Projects>
+    </ul>
   )
 }
-
-const Projects = styled.ul`
-  list-style: none;
-  margin: 3rem 0;
-  padding: 0;
-
-  @media only screen and (min-width 750px) {
-    margin: 5rem;
-  }
-`
-
-const Link = styled.a`
-  line-height: normal;
-  overflow: hidden;
-  color: ${({ theme }) => theme.colors.midgrey};
-
-  &:hover {
-    border-bottom: none;
-    color: ${({ theme }) => theme.colors.white};
-  }
-
-  h3 {
-    padding-right: 0.2em;
-    font-size: calc(20px + (50 - 20) * ((100vw - 300px) / (1600 - 300)));
-    margin: 0;
-  }
-
-  p {
-    margin: 0;
-    margin-bottom: 2rem;
-    color: inherit;
-  }
-`

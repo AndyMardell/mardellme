@@ -1,15 +1,5 @@
-'use client'
-
-import styled from 'styled-components'
+import style from '@/styles/Sup.module.scss'
 
 export default function Sup({ children }: React.PropsWithChildren) {
-  return <StyledSup>{children}</StyledSup>
+  return <sup className={style.sup}>{children}</sup>
 }
-
-const StyledSup = styled.sup`
-  font-size: 0.7em;
-  vertical-align: super;
-  margin-left: 0.2em;
-  line-height: 0;
-  color: ${({ theme }) => theme.colors.grey};
-`

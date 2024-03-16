@@ -1,0 +1,26 @@
+// TODO: Make colours and sizes variables
+
+.title {
+  font-size: calc(20px + (35 - 20) * ((100vw - 300px) / (1600 - 300)));
+  font-weight: 500;
+  text-transform: lowercase;
+  margin: 0;
+  color: #f5f5f5;
+
+  span {
+    color: #777777;
+  }
+
+  &:hover {
+    span {
+      color: #f5f5f5;
+    }
+  }
+}
+
+.link {
+  &:hover {
+    border-bottom: none;
+    cursor: pointer;
+  }
+}

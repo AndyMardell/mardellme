@@ -1,19 +1,9 @@
-'use client'
-
-import styled from 'styled-components'
+import styles from '@/styles/Divider.module.scss'
 
 interface Props {
   $small?: Boolean
 }
 
 export default function Divider({ $small }: Props) {
-  return <StyledDivider $small={$small} />
+  return <div className={styles.divider + ($small ? ' ' + styles.small : '')} />
 }
-
-const StyledDivider = styled.div<Props>`
-  height: 2px;
-  width: 100%;
-  margin: 3rem 0;
-  background: ${({ theme }) => theme.colors.grey};
-  ${({ $small }) => $small && `width: 30px;`};
-`

@@ -1,0 +1,25 @@
+$border-width-min: 10;
+$border-width-max: 20;
+$horizontal-padding-min: 20;
+$horizontal-padding-max: 90;
+$vertical-padding-min: 45;
+$vertical-padding-max: 90;
+
+.wrapper {
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: $color-black;
+  border-width: calc(($border-width-min * 1px) + ($border-width-max - $border-width-min) * ((100vw - 300px) / (1600 - 300)));
+  border-style: solid;
+  border-color: $color-white;
+}
+
+.content {
+  box-sizing: border-box;
+  padding-left: calc(($horizontal-padding-min * 1px) + ($horizontal-padding-max - $horizontal-padding-min) * ((100vw - 300px) / (1600 - 300)));
+  padding-right: calc(($horizontal-padding-min * 1px) + ($horizontal-padding-max - $horizontal-padding-min) * ((100vw - 300px) / (1600 - 300)));
+  padding-top: calc(($vertical-padding-min * 1px) + ($vertical-padding-max - $vertical-padding-min) * ((100vw - 300px) / (1600 - 300)));
+  padding-bottom: calc(($vertical-padding-min * 1px) + ($vertical-padding-max - $vertical-padding-min) * ((100vw - 300px) / (1600 - 300)));
+  min-height: calc(100vh - ((($border-width-min * 1px) + ($border-width-max - $border-width-min) * ((100vw - 300px) / (1600 - 300))) * 2));
+}

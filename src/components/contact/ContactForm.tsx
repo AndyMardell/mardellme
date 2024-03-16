@@ -1,11 +1,11 @@
 'use client'
 
 import { useEffect, useState, useRef } from 'react'
-import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import Emoji from '@/components/global/Emoji'
 import Button from '@/components/global/Button'
+import style from '@/styles/contact/ContactForm.module.scss'
 
 type Inputs = {
   name: string
@@ -73,51 +73,58 @@ export default function Contact() {
 
   if (formStatus.submitted && !formStatus.error) {
     return (
-      <Thanks>
+      <div className={style.thanks}>
         Thanks for the message – I&apos;ll get back to you soon. In the meantime
         you can connect with me on the following platforms.
         <Emoji bottom>👇</Emoji>
-      </Thanks>
+      </div>
     )
   }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className={style.form}
+      onSubmit={handleSubmit(onSubmit)}
+    >
       {formStatus.error && (
-        <Error>
+        <div className={style.error}>
           There was an error sending your message, please try again.
-        </Error>
+        </div>
       )}
-      <FormElement>
-        <Label htmlFor="name">Full Name:</Label>
-        <Input
+      <div className={style.element}>
+        <label htmlFor="name">Full Name:</label>
+        <input
           type="text"
           id="name"
-          error={errors.name ? true : false}
+          className={errors.name ? style.error : ''}
           placeholder="Your name"
           {...register('name', { required: true })}
         />
-        {errors.name && <Error>This field is required</Error>}
-      </FormElement>
-      <FormElement>
-        <Label htmlFor="email">Email Address:</Label>
-        <Input
+        {errors.name && (
+          <div className={style.error}>This field is required</div>
+        )}
+      </div>
+      <div className={style.element}>
+        <label htmlFor="email">Email Address:</label>
+        <input
           type="email"
           id="email"
-          error={errors.email ? true : false}
+          className={errors.email ? style.error : ''}
           placeholder="your@emailaddress.com"
           {...register('email', { required: true })}
         />
-        {errors.email && <Error>This field is required</Error>}
-      </FormElement>
-      <FormElement>
-        <Label htmlFor="message">Message:</Label>
-        <Textarea
+        {errors.email && (
+          <div className={style.error}>This field is required</div>
+        )}
+      </div>
+      <div className={style.element}>
+        <label htmlFor="message">Message:</label>
+        <textarea
           id="message"
-          error={errors.message ? true : false}
+          className={errors.message ? style.error : ''}
           placeholder="Your message"
           rows={1}
-          autoHeight={autoHeight}
+          style={autoHeight ? { height: `${autoHeight}px` } : {}}
           {...textareaRegister}
           ref={(e) => {
             ref(e)
@@ -125,9 +132,11 @@ export default function Contact() {
           }}
         />
         {errors.message && (
-          <Error>I&apos;m going to need more information than that...</Error>
+          <div className={style.error}>
+            I&apos;m going to need more information than that...
+          </div>
         )}
-      </FormElement>
+      </div>
       <Button
         loading={formStatus.loading}
         icon={faPaperPlane}
@@ -135,102 +144,6 @@ export default function Contact() {
       >
         {formStatus.loading ? 'Sending...' : 'Send'}
       </Button>
-    </Form>
+    </form>
   )
 }
-
-const Thanks = styled.div`
-  margin: 4rem 0;
-  font-weight: 500;
-  line-height: 1.8;
-`
-
-const Form = styled.form`
-  margin: 4rem 0 4.2rem;
-`
-
-const FormElement = styled.div`
-  padding: 1rem 0;
-
-  &:first-child {
-    padding-top: 0;
-  }
-
-  &:last-child {
-    padding-bottom: 0;
-  }
-`
-
-const Label = styled.label`
-  color: ${({ theme }) => theme.colors.white};
-  display: block;
-  font-weight: 500;
-`
-
-const Input = styled.input<{ error: boolean }>`
-  background: transparent;
-  width: 100%;
-  border: none;
-  outline: none;
-  font-size: ${({ theme }) => theme.font.size.big};
-  color: ${({ theme }) => theme.colors.white};
-  border-bottom: 2px solid ${({ theme }) => theme.colors.darkgrey};
-  ${({ error, theme }) => error && `border-bottom-color: ${theme.colors.red}`};
-  padding: 0;
-  margin: 0.2em 0;
-
-  ::placeholder {
-    opacity: 0.3;
-  }
-
-  ${({ error, theme }) =>
-    !error &&
-    `
-    &:focus {
-      border-bottom-color: ${theme.colors.grey};
-    }
-  `}
-`
-
-const Textarea = styled.textarea<{
-  autoHeight?: number | null
-  error: boolean
-}>`
-  display: block;
-  width: 100%;
-  background: transparent;
-  border: none;
-  outline: none;
-  font-size: ${({ theme }) => theme.font.size.big};
-  color: ${({ theme }) => theme.colors.white};
-  border-bottom: 2px solid ${({ theme }) => theme.colors.darkgrey};
-  ${({ error, theme }) => error && `border-bottom-color: ${theme.colors.red}`};
-  padding: 0;
-  margin: 0.2em 0;
-  overflow: hidden;
-  line-height: 1.4;
-
-  ::placeholder {
-    opacity: 0.3;
-  }
-
-  ${({ autoHeight }) =>
-    autoHeight &&
-    `
-    height: auto;
-    height: ${autoHeight}px;
-  `}
-
-  ${({ error, theme }) =>
-    !error &&
-    `
-    &:focus {
-      border-bottom-color: ${theme.colors.grey};
-    }
-  `}
-`
-
-const Error = styled.div`
-  margin: 0.5em 0;
-  color: ${({ theme }) => theme.colors.red};
-`

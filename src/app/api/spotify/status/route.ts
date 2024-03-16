@@ -102,7 +102,6 @@ export async function GET() {
   }
 }
 
-// TODO: Add this to lib
 const refreshTokens = async (refreshToken: string) => {
   try {
     const { access_token, expires_in } = await fetch(

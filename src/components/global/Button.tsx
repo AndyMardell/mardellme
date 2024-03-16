@@ -1,11 +1,11 @@
 'use client'
 
-import React, { useState, useEffect, CSSProperties, ReactNode } from 'react'
-import styled, { DefaultTheme } from 'styled-components'
+import { useState, useEffect, CSSProperties, ReactNode } from 'react'
+import Link from 'next/link'
 import { useSpring, config, animated } from 'react-spring'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
-import Link from 'next/link'
+import styles from '@/styles/Button.module.scss'
 
 interface Props {
   children: ReactNode
@@ -52,75 +52,34 @@ export default function Button({
   }
 
   return (
-    <Wrapper style={style}>
+    <div
+      className={styles.wrapper}
+      style={style}
+    >
       {href ? (
-        <StyledLink href={href}>
+        <Link
+          className={styles.button}
+          href={href}
+        >
           {children} {icon && <Icon icon={icon} />}
-        </StyledLink>
+        </Link>
       ) : (
-        <StyledButton disabled={pending}>
+        <button
+          className={styles.button}
+          disabled={pending}
+        >
           {children}
           {icon && (
             <Icon
+              className={styles.icon}
               icon={icon}
               style={animation && animations[animation]}
             />
           )}
-        </StyledButton>
+        </button>
       )}
-    </Wrapper>
+    </div>
   )
 }
 
-const Wrapper = styled.div`
-  margin-top: 1rem;
-`
-
-const buttonLinkStyle = (theme: DefaultTheme) => `
-  display: inline-block;
-  padding: 0.9em 2.5em 1.1em;
-  border-radius: 2em;
-  font-size: 1em;
-  font-weight: 600;
-  background: ${theme.colors.white};
-  color: ${theme.colors.black};
-  border: none;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-
-  &:hover:not(:disabled),
-  &:focus:not(:disabled) {
-    cursor: pointer;
-    background: ${theme.colors.lightgrey};
-    margin-top: 2px;
-    margin-bottom: -2px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    border-bottom: none;
-  }
-
-  &:loading:not(:disabled) {
-    margin-top: 3px;
-    margin-bottom: -3px;
-    background: ${theme.colors.grey};
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-
-  &:disabled {
-    cursor: wait;
-    margin-top: 3px;
-    margin-bottom: -3px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-`
-
-const StyledButton = styled.button`
-  ${({ theme }) => buttonLinkStyle(theme)}
-`
-
-const StyledLink = styled(Link)`
-  ${({ theme }) => buttonLinkStyle(theme)}
-`
-
-const Icon = styled(animated(FontAwesomeIcon))`
-  margin-left: 0.5em;
-`
+const Icon = animated(FontAwesomeIcon)

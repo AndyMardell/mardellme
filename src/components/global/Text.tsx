@@ -1,6 +1,4 @@
-'use client'
-
-import styled from 'styled-components'
+import style from '@/styles/Text.module.scss'
 
 interface Props {
   $small?: boolean
@@ -11,18 +9,15 @@ interface Props {
 
 export default function Text({ $small, $italic, $grey, children }: Props) {
   return (
-    <StyledP
-      $small={$small}
-      $italic={$italic}
-      $grey={$grey}
+    <p
+      className={
+        style.text +
+        ($small ? ' ' + style.small : '') +
+        ($italic ? ' ' + style.italic : '') +
+        ($grey ? ' ' + style.grey : '')
+      }
     >
       {children}
-    </StyledP>
+    </p>
   )
 }
-
-const StyledP = styled.p<Props>`
-  ${({ $italic }) => $italic && `font-style: italic;`}
-  ${({ $small }) => $small && `font-size: 0.8em;`}
-  ${({ $grey, theme }) => $grey && `color: ${theme.colors.grey};`}
-`

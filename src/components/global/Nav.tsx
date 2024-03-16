@@ -1,7 +1,5 @@
-'use client'
-
-import styled from 'styled-components'
 import ActiveLink from '@/components/global/ActiveLink'
+import style from '@/styles/Nav.module.scss'
 
 export interface NavLink {
   name: string
@@ -15,7 +13,7 @@ interface Props {
 
 export default function Nav({ links }: Props) {
   return (
-    <StyledNav>
+    <nav className={style.nav}>
       <ul>
         {links.map(({ name, url, internal }, i) => (
           <li key={i}>
@@ -33,35 +31,6 @@ export default function Nav({ links }: Props) {
           </li>
         ))}
       </ul>
-    </StyledNav>
+    </nav>
   )
 }
-
-const StyledNav = styled.nav`
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    li {
-      display: inline;
-
-      a {
-        color: ${({ theme }) => theme.colors.grey};
-        text-decoration: none;
-        font-weight: 500;
-        &:hover,
-        &.active {
-          color: ${({ theme }) => theme.colors.white};
-        }
-      }
-
-      &:not(:last-child)::after {
-        color: ${({ theme }) => theme.colors.grey};
-        content: '/';
-        display: inline-block;
-        margin: 0 1em;
-      }
-    }
-  }
-`

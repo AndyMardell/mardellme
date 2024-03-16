@@ -1,0 +1,29 @@
+.nav {
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: inline;
+
+      a {
+        color: $color-grey;
+        text-decoration: none;
+        font-weight: 500;
+
+        &:hover,
+        &.active {
+          color: $color-white;
+        }
+      }
+
+      &:not(:last-child)::after {
+        color: $color-grey;
+        content: '/';
+        display: inline-block;
+        margin: 0 1em;
+      }
+    }
+  }
+}

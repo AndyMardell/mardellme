@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import Providers from '@/app/providers'
-import { GlobalStyle } from '@/styles/global'
 import Container from '@/components/global/Container'
 import Header from '@/components/global/Header'
+import 'normalize.css/normalize.css'
+import '@/styles/global.scss'
 
 export const metadata: Metadata = {
   title: 'Andy Mardell – mardell.me',
@@ -20,13 +20,10 @@ export default function RootLayout({ children }: Readonly<Props>) {
   return (
     <html lang="en">
       <body>
-        <Providers>
-          <GlobalStyle />
-          <Container>
-            <Header />
-            {children}
-          </Container>
-        </Providers>
+        <Container>
+          <Header />
+          {children}
+        </Container>
         <Analytics />
         <SpeedInsights />
       </body>

@@ -1,0 +1,36 @@
+$subtitle-size-min: 30;
+$subtitle-size-max: 60;
+$small-subtitle-size-min: 25;
+$small-subtitle-size-max: 50;
+
+.subtitle {
+  font-family: $font-family-heading;
+  font-weight: 800;
+  font-size: calc(($subtitle-size-min * 1px) + ($subtitle-size-max - $subtitle-size-min) * ((100vw - 300px) / (1600 - 300)));
+  text-shadow: 4px 5px 0px rgba(255, 255, 255, 0.1);
+  margin: 2em 0 0.8em;
+
+  @media only screen and (min-width: 700px) {
+    margin: 1.5em 0 0.5em;
+  }
+
+  @media only screen and (min-width: 900px) {
+    margin: 1em 0 0.5em;
+    text-shadow: 7px 9px 0px rgba(255, 255, 255, 0.1);
+  }
+
+  &.small {
+    font-size: calc(($small-subtitle-size-min * 1px) + ($small-subtitle-size-max - $small-subtitle-size-min) * ((100vw - 300px) / (1600 - 300)));
+  }
+
+  a {
+    color: $color-sipink;
+    line-height: 1.4;
+
+    &:hover {
+      text-decoration: none;
+      border-bottom: none;
+      font-style: italic;
+    }
+  }
+}

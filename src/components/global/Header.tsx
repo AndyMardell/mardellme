@@ -1,9 +1,6 @@
-'use client'
-
-import styled from 'styled-components'
-
 import Title from '@/components/global/Title'
 import Nav, { NavLink } from '@/components/global/Nav'
+import style from '@/styles/Header.module.scss'
 
 const links: NavLink[] = [
   { name: 'Work', url: '/work', internal: true },
@@ -12,18 +9,11 @@ const links: NavLink[] = [
 
 export default function Header() {
   return (
-    <StyledHeader>
+    <header className={style.header}>
       <Title>
         Mardell<span>.me</span>
       </Title>
       <Nav links={links} />
-    </StyledHeader>
+    </header>
   )
 }
-
-const StyledHeader = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 3.3rem;
-`

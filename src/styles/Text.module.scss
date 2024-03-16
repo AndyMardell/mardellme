@@ -1,0 +1,13 @@
+.text {
+  &.italic {
+    font-style: italic;
+  }
+
+  &.small {
+    font-size: 0.8em;
+  }
+
+  &.grey {
+    color: $color-grey;
+  }
+}

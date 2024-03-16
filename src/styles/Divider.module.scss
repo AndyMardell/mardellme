@@ -1,0 +1,10 @@
+.divider {
+  height: 2px;
+  width: 100%;
+  margin: 3rem 0;
+  background: $color-grey;
+
+  &.small {
+    width: 30px;
+  }
+}
