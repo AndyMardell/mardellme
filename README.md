@@ -1,17 +1,28 @@
-A simple Next.js personal site.
+# 🌐 Mardell.me Personal Site
 
-## Development
+This is my tiny digital outpost on the web, cobbled together with Next.js and curiosity. Check it out live at
+[mardell.me](https://mardell.me)
 
-First, run the development server:
+## 🚀 Features
+
+It's a simple site... there's not a lot to look at and certainly not a big undertaking. But I had fun building it - here
+are some features:
+
+- **Spotify Integration**: See what I'm currently jamming to or what's recently been playing 🎵.
+- **Work Showcase**: A playground of my personal projects and experiments 🛠.
+- **Contact Page**: Drop me a line through my site, directly hitting my inbox via Mailgun API 📬.
+
+## 💻 Development
+
+To get the local development server running:
 
 ```bash
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit [localhost:3000](http://localhost:3000) in your browser to see the site in action. You'll probably need some
+private `.env` variables to get it working.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🌌 Deployed on Vercel
 
-## Deployed on Vercel
-
-Deployed using the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This site is powered by the [Vercel Platform](https://vercel.com/), from the creators of Next.js.
