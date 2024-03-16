@@ -4,7 +4,6 @@ import { useEffect } from 'react'
 
 export default function Auth() {
   useEffect(() => {
-    console.log('running auth once')
     const scopes = [
       'user-read-private',
       'user-read-email',

@@ -56,8 +56,13 @@ export async function GET() {
           track: {
             name: currentlyPlayingTrack?.name,
             artist:
-              currentlyPlayingTrack && currentlyPlayingTrack.artists[0].name
+              currentlyPlayingTrack &&
+              currentlyPlayingTrack.artists
+                .map(({ name }: { name: string }) => name)
+                .join(', ')
           },
+          preview: currentlyPlayingTrack?.preview_url,
+          url: currentlyPlayingTrack?.external_urls.spotify,
           isPlaying,
           lastUpdated: dayjs().toISOString()
         }
@@ -77,8 +82,12 @@ export async function GET() {
           lastPlayed: items[0].played_at,
           track: {
             name: items[0].track.name,
-            artist: items[0].track.artists[0].name
+            artist: items[0].track.artists
+              .map(({ name }: { name: string }) => name)
+              .join(', ')
           },
+          preview: items[0].track?.preview_url,
+          url: items[0].track.external_urls.spotify,
           isPlaying: false,
           lastUpdated: dayjs().toISOString()
         }
@@ -111,9 +120,7 @@ const refreshTokens = async (refreshToken: string) => {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
           Authorization: `Basic ${Buffer.from(
-            process.env.SPOTIFY_CLIENT_ID +
-              ':' +
-              process.env.SPOTIFY_CLIENT_SECRET
+            `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`
           ).toString('base64')}`
         },
         body: new URLSearchParams({

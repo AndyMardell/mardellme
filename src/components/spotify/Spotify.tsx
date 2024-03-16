@@ -5,7 +5,10 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import Playing from '@/components/spotify/Playing'
 import Text from '@/components/global/Text'
-import style from '@/styles/spotify/Spotify.module.scss'
+import Preview from '@/components/spotify/Preview'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
+import styles from '@/styles/spotify/Spotify.module.scss'
 
 export interface Status {
   isPlaying: boolean
@@ -13,6 +16,8 @@ export interface Status {
     artist: string
     name: string
   }
+  url: string
+  preview?: string
   lastPlayed?: string
   lastUpdated: string
 }
@@ -30,32 +35,45 @@ export default function Spotify() {
       ).then((res) => res.json())
       setStatus(fetchedStatus)
     } catch (err: any) {
-      console.log(err.message)
       setStatus(false)
     }
   }
 
   useEffect(() => {
     fetchStatus()
-    const updateStatus = setInterval(() => fetchStatus(), 180000)
+    const updateStatus = setInterval(() => fetchStatus(), 180000) // 3 minutes
     return () => clearInterval(updateStatus)
   }, [])
 
   if (!status) {
-    return <div className={style.status}>Loading embarrassing song data...</div>
+    return (
+      <div className={styles.status}>Loading embarrassing song data...</div>
+    )
   }
 
   const { isPlaying, track, lastPlayed: lastPlayedTime } = status
   const lastPlayed = dayjs(lastPlayedTime).fromNow()
 
   return (
-    <div className={style.status}>
-      {isPlaying && <Playing />}
-      <Text>
-        <strong>{isPlaying ? 'Now playing: ' : 'Last played: '}</strong>
-        {track.name} - {track.artist}
-        {!isPlaying && lastPlayed && ` (${lastPlayed})`}
-      </Text>
+    <div className={styles.container}>
+      <div className={styles.status}>
+        {isPlaying && <Playing />}
+        <Text>
+          <strong>{isPlaying ? 'Now playing: ' : 'Last played: '}</strong>
+          {track.name} - {track.artist}
+          {!isPlaying && lastPlayed && ` (${lastPlayed})`}
+        </Text>
+      </div>
+      <div className={styles.links}>
+        {status.preview && <Preview src={status.preview} />}
+        <a
+          href={status.url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open in Spotify <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+        </a>
+      </div>
     </div>
   )
 }
