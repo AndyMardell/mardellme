@@ -1,5 +1,5 @@
-$font-family-body: 'IBM Plex Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$font-family-heading: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-family-body: var(--font-plex-sans), 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-family-heading: var(--font-montserrat), 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $font-size-base-min: 15;
 $font-size-base-max: 18;
 $font-size-big: 1.7rem;

@@ -14,29 +14,29 @@
     animation-timing-function: linear;
     vertical-align: middle;
     bottom: 0 !important;
-    background: $color-white;
+    background-color: $color-white;
 
-    &.line1 {
+    &:nth-child(1) {
       left: 0%;
       bottom: 0px;
       animation-delay: -1.9s;
     }
 
-    &.line2 {
+    &:nth-child(2) {
       left: 25%;
       height: 20px;
       bottom: -15px;
       animation-delay: -2.9s;
     }
 
-    &.line3 {
+    &:nth-child(3) {
       left: 50%;
       height: 10px;
       bottom: -1.5px;
       animation-delay: -3.9s;
     }
 
-    &.line4 {
+    &:nth-child(4) {
       left: 75%;
       height: 15px;
       bottom: -16px;

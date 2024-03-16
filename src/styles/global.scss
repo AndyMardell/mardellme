@@ -1,9 +1,5 @@
-@import 'fonts.scss';
-
-// TODO: Normalise?
-
 body {
-  font-family: 'IBM Plex Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: $font-family-body;
   font-weight: 300;
   font-size: $font-size-base-max * 1px;
   font-size: calc(($font-size-base-min * 1px) + ($font-size-base-max - $font-size-base-min) * ((100vw - 400px) / (1600 - 400)));
