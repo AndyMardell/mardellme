@@ -22,7 +22,7 @@ export default function Home() {
       </Subtitle>
       <Emoji animate="wave">👋</Emoji>
       <p>
-        I'm Andy, a project manager with a rich history in web development.
+        I&apos;m Andy, a project manager with a rich history in web development.
         Although my path has shifted from hands-on development to managing
         projects, coding still captivates my heart after hours.
       </p>

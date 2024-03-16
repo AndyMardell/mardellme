@@ -25,13 +25,13 @@ const Work: NextPage = () => (
         >
           Si digital
         </Link>
-        , I have produced a variety of "proper" websites over the years. For
-        obvious reasons, I can't showcase these projects here.{' '}
+        , I have produced a variety of &quot;proper&quot; websites over the
+        years. For obvious reasons, I can&apos;t showcase these projects here.{' '}
       </p>
       <p>
-        However, I like to keep myself busy; below, you'll discover a collection
-        of personal projects – some sillier than others, most born from
-        curiosity<Sup>1</Sup>
+        However, I like to keep myself busy; below, you&apos;ll discover a
+        collection of personal projects – some sillier than others, most born
+        from curiosity<Sup>1</Sup>
       </p>
     </Content>
     <Portfolio />
@@ -40,11 +40,11 @@ const Work: NextPage = () => (
         $small
         $italic
       >
-        <Sup>1</Sup> Yes, they're nearly all unfinished and will likely remain
-        that way
+        <Sup>1</Sup> Yes, they&apos;re nearly all unfinished and will likely
+        remain that way
         <br />
-        <Sup>2</Sup> I'm not a designer, but I do like to dabble <br />
-        <Sup>3</Sup> I'm not a doctor, but I do like to babble
+        <Sup>2</Sup> I&apos;m not a designer, but I do like to dabble <br />
+        <Sup>3</Sup> I&apos;m not a doctor, but I do like to babble
       </Text>
     </Content>
   </>

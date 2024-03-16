@@ -27,9 +27,9 @@ export default function Contact() {
           🤙
         </Emoji>
         <p>
-          I'd love to hear from you. Drop me a message and I'll get back to you
-          as soon as I can. You can also follow me around the internet (stalker)
-          using the links below.
+          I&apos;d love to hear from you. Drop me a message and I&apos;ll get
+          back to you as soon as I can. You can also follow me around the
+          internet (stalker) using the links below.
         </p>
       </Content>
       <Content maxWidth={500}>

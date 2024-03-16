@@ -74,8 +74,8 @@ export default function Contact() {
   if (formStatus.submitted && !formStatus.error) {
     return (
       <Thanks>
-        Thanks for the message – I'll get back to you soon. In the meantime you
-        can connect with me on the following platforms.
+        Thanks for the message – I&apos;ll get back to you soon. In the meantime
+        you can connect with me on the following platforms.
         <Emoji bottom>👇</Emoji>
       </Thanks>
     )
@@ -125,7 +125,7 @@ export default function Contact() {
           }}
         />
         {errors.message && (
-          <Error>I'm going to need more information than that...</Error>
+          <Error>I&apos;m going to need more information than that...</Error>
         )}
       </FormElement>
       <Button
