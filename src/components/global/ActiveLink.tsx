@@ -3,7 +3,8 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-interface Props extends React.PropsWithChildren {
+interface Props {
+  children: React.ReactNode
   href: string
 }
 

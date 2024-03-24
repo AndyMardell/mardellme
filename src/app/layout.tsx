@@ -10,7 +10,7 @@ import '@/styles/global.scss'
 export const metadata: Metadata = {
   title: 'Andy Mardell – mardell.me',
   description:
-    'Experienced developer from Portsmouth with a demonstrated history of working in the industry. Skilled in JavaScript (Next.js, React, Node.js), DevOps, PHP, WordPress and Magento.'
+    'A technical project manager from Portsmouth with a rich history in web development. Skilled in Next.js, React, DevOps, PHP, Typescript.'
 }
 
 interface Props {

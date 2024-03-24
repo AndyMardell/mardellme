@@ -1,8 +1,7 @@
-import { ReactNode } from 'react'
 import style from '@/styles/Subtitle.module.scss'
 
 interface Props {
-  children?: ReactNode
+  children?: React.ReactNode
   small?: boolean
 }
 

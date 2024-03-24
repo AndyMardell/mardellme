@@ -25,6 +25,7 @@ export type SpotifyStatus = {
 dayjs.extend(relativeTime)
 
 export default function Spotify() {
+  const [loading, setLoading] = useState<Boolean>(true)
   const [status, setStatus] = useState<SpotifyStatus | false>(false)
 
   const getStatus = async () => {
@@ -34,8 +35,10 @@ export default function Spotify() {
         { cache: 'no-store' }
       ).then((res) => res.json())
       setStatus(spotifyStatus)
+      setLoading(false)
     } catch (err: any) {
       setStatus(false)
+      setLoading(false)
     }
   }
 
@@ -45,10 +48,14 @@ export default function Spotify() {
     return () => clearInterval(updateStatus)
   }, [])
 
-  if (!status) {
+  if (loading) {
     return (
       <div className={styles.status}>Loading embarrassing song data...</div>
     )
+  }
+
+  if (!status) {
+    return null
   }
 
   const { track, lastPlayed, isPlaying } = status

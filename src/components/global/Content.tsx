@@ -1,8 +1,6 @@
-import { ReactNode } from 'react'
-
 interface Props {
   maxWidth?: number
-  children: ReactNode
+  children: React.ReactNode
 }
 
 export default function Content({ maxWidth, children }: Props) {

@@ -1,7 +1,7 @@
 import ActiveLink from '@/components/global/ActiveLink'
 import style from '@/styles/Nav.module.scss'
 
-export interface NavLink {
+export type NavLink = {
   name: string
   url: string
   internal?: boolean

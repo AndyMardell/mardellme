@@ -6,7 +6,7 @@ import ContactForm from '@/components/contact/ContactForm'
 
 export const metadata: Metadata = {
   title: 'Contact – mardell.me',
-  description: `If you're interested in working with me, I'd love to hear from you. Find my contact details here and stalk me around the internet.`
+  description: `I'd love to hear from you. Find my contact details here and stalk me around the internet.`
 }
 
 const links: NavLink[] = [

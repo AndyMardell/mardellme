@@ -1,6 +1,5 @@
 'use client'
 
-import { ReactNode } from 'react'
 import { useSpring, animated, config } from 'react-spring'
 import style from '@/styles/Emoji.module.scss'
 
@@ -8,7 +7,7 @@ interface Props {
   inline?: boolean
   right?: boolean
   bottom?: boolean
-  children?: ReactNode
+  children?: React.ReactNode
   animate?: string
   origin?: string
 }

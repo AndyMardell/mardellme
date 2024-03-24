@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, CSSProperties, ReactNode } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useSpring, config, animated } from 'react-spring'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,12 +8,12 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
 import styles from '@/styles/Button.module.scss'
 
 interface Props {
-  children: ReactNode
+  children: React.ReactNode
   loading?: boolean
   href?: string
   icon?: IconDefinition
   animation?: string
-  style?: CSSProperties
+  style?: React.CSSProperties
 }
 
 export default function Button({

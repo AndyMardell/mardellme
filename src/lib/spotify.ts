@@ -72,9 +72,13 @@ export async function getStatus(accessToken?: string): Promise<SpotifyStatus> {
 
 export function formatStatus({
   track,
-  lastPlayed,
-  isPlaying
-}: any): SpotifyStatus {
+  isPlaying,
+  lastPlayed
+}: {
+  track: any // TODO: Type this
+  isPlaying: boolean
+  lastPlayed?: string
+}): SpotifyStatus {
   return {
     track: {
       name: track.name,

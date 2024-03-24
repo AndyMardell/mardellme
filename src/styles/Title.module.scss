@@ -1,19 +1,17 @@
-// TODO: Make colours and sizes variables
-
 .title {
-  font-size: calc(20px + (35 - 20) * ((100vw - 300px) / (1600 - 300)));
+  font-size: calc(($font-size-big-min * 1px) + ($font-size-big-max - $font-size-big-min) * ((100vw - 300px) / (1600 - 300)));
   font-weight: 500;
   text-transform: lowercase;
   margin: 0;
-  color: #f5f5f5;
+  color: $color-white;
 
   span {
-    color: #777777;
+    color: $color-grey;
   }
 
   &:hover {
     span {
-      color: #f5f5f5;
+      color: $color-white;
     }
   }
 }

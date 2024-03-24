@@ -1,7 +1,11 @@
 import Link from 'next/link'
 import style from '@/styles/Title.module.scss'
 
-export default function Title({ children }: { children: React.ReactNode }) {
+interface Props {
+  children: React.ReactNode
+}
+
+export default function Title({ children }: Props) {
   return (
     <h1 className={style.title}>
       <Link
