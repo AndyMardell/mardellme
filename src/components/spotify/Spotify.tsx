@@ -10,38 +10,38 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import styles from '@/styles/spotify/Spotify.module.scss'
 
-export interface Status {
+export type SpotifyStatus = {
   isPlaying: boolean
   track: {
     artist: string
     name: string
+    url: string
+    preview?: string
   }
-  url: string
-  preview?: string
-  lastPlayed?: string
+  lastPlayed: string
   lastUpdated: string
 }
 
 dayjs.extend(relativeTime)
 
 export default function Spotify() {
-  const [status, setStatus] = useState<Status | false>(false)
+  const [status, setStatus] = useState<SpotifyStatus | false>(false)
 
-  const fetchStatus = async () => {
+  const getStatus = async () => {
     try {
-      const { status: fetchedStatus } = await fetch(
+      const { spotifyStatus } = await fetch(
         `${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/spotify/status`,
         { cache: 'no-store' }
       ).then((res) => res.json())
-      setStatus(fetchedStatus)
+      setStatus(spotifyStatus)
     } catch (err: any) {
       setStatus(false)
     }
   }
 
   useEffect(() => {
-    fetchStatus()
-    const updateStatus = setInterval(() => fetchStatus(), 180000) // 3 minutes
+    getStatus()
+    const updateStatus = setInterval(() => getStatus(), 180000) // 3 minutes
     return () => clearInterval(updateStatus)
   }, [])
 
@@ -51,8 +51,7 @@ export default function Spotify() {
     )
   }
 
-  const { isPlaying, track, lastPlayed: lastPlayedTime } = status
-  const lastPlayed = dayjs(lastPlayedTime).fromNow()
+  const { track, lastPlayed, isPlaying } = status
 
   return (
     <div className={styles.container}>
@@ -61,13 +60,13 @@ export default function Spotify() {
         <Text>
           <strong>{isPlaying ? 'Now playing: ' : 'Last played: '}</strong>
           {track.name} - {track.artist}
-          {!isPlaying && lastPlayed && ` (${lastPlayed})`}
+          {!isPlaying && ` (${dayjs(lastPlayed).fromNow()})`}
         </Text>
       </div>
       <div className={styles.links}>
-        {status.preview && <Preview src={status.preview} />}
+        {track.preview && <Preview src={track.preview} />}
         <a
-          href={status.url}
+          href={track.url}
           target="_blank"
           rel="noopener noreferrer"
         >
