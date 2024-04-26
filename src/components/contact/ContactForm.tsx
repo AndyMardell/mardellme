@@ -35,18 +35,26 @@ export default function Contact() {
   const onSubmit = async ({ name, email, message }: Inputs) => {
     try {
       setFormStatus({ loading: true, submitted: false, error: false })
-      await fetch(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/contact`, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          message
-        })
-      })
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/contact`,
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            message
+          })
+        }
+      )
+
+      if (!res.ok) {
+        throw new Error('Error sending message')
+      }
+
       setTimeout(() => {
         reset()
         setFormStatus({ loading: false, submitted: true, error: false })

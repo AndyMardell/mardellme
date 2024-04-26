@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import React from 'react'
 import Link from 'next/link'
-import { useSpring, config, animated } from 'react-spring'
+import { useSpring, config, animated, AnimatedProps } from 'react-spring'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
 import styles from '@/styles/Button.module.scss'
@@ -24,22 +24,19 @@ export default function Button({
   animation,
   style
 }: Props) {
-  const [pending, setPending] = useState(false)
-  useEffect(() => setPending(loading ? true : false), [loading])
-
   const fly = useSpring({
     config: config.default,
     from: {
       transform: 'rotate(0deg) translate(0px, 0px)'
     },
-    to: async (next: any) => {
+    to: async (next) => {
       await next({
-        transform: pending
+        transform: loading
           ? 'rotate(20deg) translate(0px, 0px)'
           : 'rotate(0deg) translate(0px, 0px)'
       })
       await next({
-        transform: pending
+        transform: loading
           ? 'rotate(20deg) translate(50px, -50px)'
           : 'rotate(0deg) translate(0px, 0px)'
       })
@@ -47,7 +44,7 @@ export default function Button({
     delay: 100
   })
 
-  const animations: Record<string, any> = {
+  const animations: Record<string, AnimatedProps<React.CSSProperties>> = {
     fly
   }
 
@@ -66,14 +63,14 @@ export default function Button({
       ) : (
         <button
           className={styles.button}
-          disabled={pending}
+          disabled={loading}
         >
           {children}
           {icon && (
             <Icon
               className={styles.icon}
               icon={icon}
-              style={animation && animations[animation]}
+              style={animation ? animations[animation] : undefined}
             />
           )}
         </button>
