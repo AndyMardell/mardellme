@@ -5,6 +5,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import Container from '@/components/global/Container'
 import Header from '@/components/global/Header'
 import 'normalize.css/normalize.css'
+import '@fortawesome/fontawesome-svg-core/styles.css'
 import '@/styles/global.scss'
 
 export const metadata: Metadata = {
