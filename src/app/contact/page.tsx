@@ -5,7 +5,7 @@ import Nav, { NavLink } from '@/components/global/Nav'
 import ContactForm from '@/components/contact/ContactForm'
 
 export const metadata: Metadata = {
-  title: 'Contact – mardell.me',
+  title: 'Contact - mardell.me',
   description: `I'd love to hear from you. Find my contact details here and stalk me around the internet.`
 }
 

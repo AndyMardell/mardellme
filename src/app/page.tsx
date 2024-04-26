@@ -1,9 +1,9 @@
+import Link from 'next/link'
 import Subtitle from '@/components/global/Subtitle'
 import Content from '@/components/global/Content'
 import Emoji from '@/components/global/Emoji'
 import Divider from '@/components/global/Divider'
 import Button from '@/components/global/Button'
-import Link from 'next/link'
 import Spotify from '@/components/spotify/Spotify'
 
 export default function Home() {

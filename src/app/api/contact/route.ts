@@ -22,18 +22,19 @@ export async function POST(req: Request) {
     const mg = mailgun.client({
       username: 'api',
       url: process.env.MAILGUN_API_URL,
-      key: process.env.MAILGUN_API_KEY || ''
+      key: process.env.MAILGUN_API_KEY
     })
 
-    await mg.messages.create(process.env.MAILGUN_DOMAIN || '', {
+    await mg.messages.create(process.env.MAILGUN_DOMAIN, {
       from: `${name}<${email}>`,
-      to: [process.env.MAILGUN_EMAIL || ''],
+      to: [process.env.MAILGUN_EMAIL],
       subject: `A new website message from ${name}`,
       text: message
     })
 
     return new Response('Message sent', { status: 200 })
   } catch (err: any) {
-    return new Response(err.message, { status: 500 })
+    console.error(err)
+    return new Response('Internal server error', { status: 500 })
   }
 }

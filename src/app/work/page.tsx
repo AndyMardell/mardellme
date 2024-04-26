@@ -7,9 +7,9 @@ import Text from '@/components/global/Text'
 import Sup from '@/components/global/Sup'
 
 export const metadata: Metadata = {
-  title: 'Work – mardell.me',
+  title: 'Work - mardell.me',
   description:
-    'A collection of personal projects – some sillier than others, most born from curiosity'
+    'A collection of personal projects - some sillier than others, most born from curiosity'
 }
 
 const Work: NextPage = () => (

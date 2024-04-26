@@ -22,7 +22,7 @@ export async function GET() {
     const spotifyStatus = await getStatus()
 
     if (!spotifyStatus) {
-      console.log('No player data found')
+      console.error('No player data found')
       return NextResponse.json(
         { message: 'No player data found' },
         { status: 404 }

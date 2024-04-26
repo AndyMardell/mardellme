@@ -3,7 +3,7 @@ import { Suspense } from 'react'
 import SpotifyCallback from '@/components/spotify/SpotifyCallback'
 
 export const metadata: Metadata = {
-  title: 'Spotify Callback – mardell.me',
+  title: 'Spotify Callback - mardell.me',
   robots: {
     index: false,
     follow: false,

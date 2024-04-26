@@ -8,7 +8,7 @@ import 'normalize.css/normalize.css'
 import '@/styles/global.scss'
 
 export const metadata: Metadata = {
-  title: 'Andy Mardell – mardell.me',
+  title: 'Andy Mardell - mardell.me',
   description:
     'A technical project manager from Portsmouth with a rich history in web development. Skilled in Next.js, React, DevOps, PHP, Typescript.'
 }
