@@ -10,29 +10,38 @@ export default function SpotifyCallback() {
   const code = searchParams.get('code')
 
   useEffect(() => {
-    if (!code) {
-      return
-    }
-
-    fetch(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/spotify/callback`, {
-      method: 'POST',
-      body: JSON.stringify({ code }),
-      headers: {
-        'Content-Type': 'application/json'
+    async function fetchSpotifyData() {
+      if (!code || !process.env.NEXT_PUBLIC_FRONTEND_URL) {
+        setFinished(true)
+        setSuccess(false)
+        return
       }
-    })
-      .then((res) => {
+
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/spotify/callback`,
+          {
+            method: 'POST',
+            body: JSON.stringify({ code }),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+        )
+
         if (res.status !== 200) {
           throw new Error()
         }
 
         setFinished(true)
         setSuccess(true)
-      })
-      .catch(() => {
+      } catch {
         setFinished(true)
         setSuccess(false)
-      })
+      }
+    }
+
+    fetchSpotifyData()
   }, [code])
 
   if (!finished) {

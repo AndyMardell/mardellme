@@ -20,9 +20,13 @@
 
 .links {
   position: absolute;
-  display: none;
+  display: flex;
   align-items: center;
   width: 100%;
+
+  &:not(.playing) {
+    display: none;
+  }
 
   a {
     font-size: .8em;

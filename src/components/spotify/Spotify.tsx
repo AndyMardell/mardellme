@@ -27,6 +27,7 @@ dayjs.extend(relativeTime)
 export default function Spotify() {
   const [loading, setLoading] = useState<Boolean>(true)
   const [status, setStatus] = useState<SpotifyStatus | false>(false)
+  const [playing, setPlaying] = useState<Boolean>(false)
 
   const getStatus = async () => {
     try {
@@ -70,8 +71,13 @@ export default function Spotify() {
           {!isPlaying && ` (${dayjs(lastPlayed).fromNow()})`}
         </Text>
       </div>
-      <div className={styles.links}>
-        {track.preview && <Preview src={track.preview} />}
+      <div className={`${styles.links} ${playing ? styles.playing : ''}`}>
+        {track.preview && (
+          <Preview
+            src={track.preview}
+            setPlaying={setPlaying}
+          />
+        )}
         <a
           href={track.url}
           target="_blank"
