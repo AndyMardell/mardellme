@@ -4,13 +4,6 @@ interface Props {
 }
 
 export default function Content({ maxWidth, children }: Props) {
-  return (
-    <div
-      style={{
-        maxWidth: maxWidth ? `${maxWidth}px` : 'auto'
-      }}
-    >
-      {children}
-    </div>
-  )
+  const style = { maxWidth: maxWidth ? `${maxWidth}px` : 'auto' }
+  return <div style={style}>{children}</div>
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { useSpring, animated, config } from 'react-spring'
+import { useSpring, animated, config, SpringValues } from 'react-spring'
 import style from '@/styles/Emoji.module.scss'
 
 interface Props {
@@ -42,26 +42,20 @@ export default function Emoji({
     }
   })
 
-  const animations: Record<string, any> = { wave, flex }
+  const animations: Record<string, SpringValues<{ transform: string }>> = {
+    wave,
+    flex
+  }
 
   return (
     <div
-      className={
-        style.wrapper +
-        (right ? ' ' + style.right : '') +
-        (bottom ? ' ' + style.bottom : '') +
-        (inline ? ' ' + style.inline : '')
-      }
+      className={`${style.wrapper} ${right ? style.right : ''} ${bottom ? style.bottom : ''} ${inline ? style.inline : ''}`}
     >
       <animated.span
-        className={
-          style.emoji +
-          (right ? ' ' + style.right : '') +
-          (inline ? ' ' + style.inline : '')
-        }
+        className={`${style.emoji} ${right ? style.right : ''} ${inline ? style.inline : ''}`}
         style={{
-          transformOrigin: origin ? origin : 'bottom right',
-          ...(animate && animations[animate])
+          transformOrigin: origin || 'bottom right',
+          ...animations[animate ?? '']
         }}
       >
         {children}

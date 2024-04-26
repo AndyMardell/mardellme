@@ -5,5 +5,5 @@ interface Props {
 }
 
 export default function Divider({ $small }: Props) {
-  return <div className={styles.divider + ($small ? ' ' + styles.small : '')} />
+  return <div className={`${styles.divider} ${$small && styles.small}`} />
 }

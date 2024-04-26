@@ -8,16 +8,14 @@ interface Props {
 }
 
 export default function Text({ $small, $italic, $grey, children }: Props) {
-  return (
-    <p
-      className={
-        style.text +
-        ($small ? ' ' + style.small : '') +
-        ($italic ? ' ' + style.italic : '') +
-        ($grey ? ' ' + style.grey : '')
-      }
-    >
-      {children}
-    </p>
-  )
+  const className = [
+    style.text,
+    $small && style.small,
+    $italic && style.italic,
+    $grey && style.grey
+  ]
+    .filter(Boolean)
+    .join(' ')
+
+  return <p className={className}>{children}</p>
 }
