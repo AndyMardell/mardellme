@@ -2,7 +2,9 @@ body {
   font-family: $font-family-body;
   font-weight: 300;
   font-size: $font-size-base-max * 1px;
-  font-size: calc(($font-size-base-min * 1px) + ($font-size-base-max - $font-size-base-min) * ((100vw - 400px) / (1600 - 400)));
+  font-size: calc(
+    ($font-size-base-min * 1px) + ($font-size-base-max - $font-size-base-min) * ((100vw - 400px) / (1600 - 400))
+  );
   color: $color-white;
 }
 
@@ -12,23 +14,24 @@ p {
   margin: 1em 0;
 
   a {
+    font-weight: $font-weight-bold;
     color: inherit;
     text-decoration: none;
     position: relative;
     overflow: hidden;
     padding: 0 0.2em;
-    
+
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       z-index: 0;
-      bottom: -.2em;
+      bottom: -0.2em;
       left: 0;
       width: 100%;
       height: 100%;
       border-bottom: 4px solid $color-darkgrey;
     }
-  
+
     &:hover::after {
       border-color: $color-grey;
     }

@@ -24,6 +24,7 @@ export default function Preview({ src, setPlaying: setParentPlaying }: Props) {
   return (
     <div>
       <audio
+        role="audio"
         src={src}
         ref={audioRef}
         onPlay={() => setPlaying(true)}
@@ -33,7 +34,7 @@ export default function Preview({ src, setPlaying: setParentPlaying }: Props) {
       <button
         className={styles.button}
         onClick={playPause}
-        title="Preview"
+        title={playing ? 'Pause' : 'Play'}
       >
         <FontAwesomeIcon icon={playing ? faPauseCircle : faPlayCircle} />
       </button>
