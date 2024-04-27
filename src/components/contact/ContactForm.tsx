@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react'
 import { useForm } from 'react-hook-form'
+import classNames from 'classnames'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import Emoji from '@/components/global/Emoji'
 import Button from '@/components/global/Button'
@@ -82,7 +83,7 @@ export default function Contact() {
   if (formStatus.submitted && !formStatus.error) {
     return (
       <div className={style.thanks}>
-        Thanks for the message – I&apos;ll get back to you soon. In the meantime
+        Thanks for the message - I&apos;ll get back to you soon. In the meantime
         you can connect with me on the following platforms.
         <Emoji bottom>👇</Emoji>
       </div>
@@ -104,7 +105,7 @@ export default function Contact() {
         <input
           type="text"
           id="name"
-          className={errors.name ? style.error : ''}
+          className={classNames({ [style.error]: errors.name })}
           placeholder="Your name"
           {...register('name', { required: true })}
         />
@@ -117,7 +118,7 @@ export default function Contact() {
         <input
           type="email"
           id="email"
-          className={errors.email ? style.error : ''}
+          className={classNames({ [style.error]: errors.email })}
           placeholder="your@emailaddress.com"
           {...register('email', { required: true })}
         />
@@ -129,7 +130,7 @@ export default function Contact() {
         <label htmlFor="message">Message:</label>
         <textarea
           id="message"
-          className={errors.message ? style.error : ''}
+          className={classNames({ [style.error]: errors.message })}
           placeholder="Your message"
           rows={1}
           style={autoHeight ? { height: `${autoHeight}px` } : {}}

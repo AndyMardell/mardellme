@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import classNames from 'classnames'
 import Playing from '@/components/spotify/Playing'
 import Text from '@/components/global/Text'
 import Preview from '@/components/spotify/Preview'
@@ -71,7 +72,7 @@ export default function Spotify() {
           {!isPlaying && ` (${dayjs(lastPlayed).fromNow()})`}
         </Text>
       </div>
-      <div className={`${styles.links} ${playing ? styles.playing : ''}`}>
+      <div className={classNames(styles.links, { [styles.playing]: playing })}>
         {track.preview && (
           <Preview
             src={track.preview}

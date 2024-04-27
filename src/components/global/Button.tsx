@@ -70,7 +70,11 @@ export default function Button({
             <Icon
               className={styles.icon}
               icon={icon}
-              style={animation ? animations[animation] : undefined}
+              style={{
+                ...(animation ? animations[animation] : undefined),
+                willChange: 'transform',
+                transform: 'translateZ(0)'
+              }}
             />
           )}
         </button>

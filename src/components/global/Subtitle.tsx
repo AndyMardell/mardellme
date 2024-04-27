@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import style from '@/styles/Subtitle.module.scss'
 
 interface Props {
@@ -6,6 +7,9 @@ interface Props {
 }
 
 export default function Subtitle({ children, $small }: Props) {
-  const className = [$small && style.small].filter(Boolean).join(' ')
-  return <h2 className={`${style.subtitle} ${className}`}>{children}</h2>
+  return (
+    <h2 className={classNames(style.subtitle, { [style.small]: $small })}>
+      {children}
+    </h2>
+  )
 }

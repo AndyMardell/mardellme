@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import style from '@/styles/Text.module.scss'
 
 interface Props {
@@ -8,14 +9,15 @@ interface Props {
 }
 
 export default function Text({ $small, $italic, $grey, children }: Props) {
-  const className = [
-    style.text,
-    $small && style.small,
-    $italic && style.italic,
-    $grey && style.grey
-  ]
-    .filter(Boolean)
-    .join(' ')
-
-  return <p className={className}>{children}</p>
+  return (
+    <p
+      className={classNames(style.text, {
+        [style.small]: $small,
+        [style.italic]: $italic,
+        [style.grey]: $grey
+      })}
+    >
+      {children}
+    </p>
+  )
 }

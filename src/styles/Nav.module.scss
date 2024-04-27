@@ -7,17 +7,6 @@
     li {
       display: inline;
 
-      a {
-        color: $color-grey;
-        text-decoration: none;
-        font-weight: 500;
-
-        &:hover,
-        &.active {
-          color: $color-white;
-        }
-      }
-
       &:not(:last-child)::after {
         color: $color-grey;
         content: '/';
