@@ -3,23 +3,21 @@ import { kv } from '@vercel/kv'
 import dayjs from 'dayjs'
 import type { SpotifyStatus } from '@/components/spotify/Spotify'
 import { getStatus } from '@/lib/spotify'
-import Spotify from '@/components/spotify/Spotify'
 
 export const dynamic = 'force-dynamic'
 
 export async function GET() {
   try {
     const cachedStatus = await kv.get<SpotifyStatus>('spotify:status')
-    if (dayjs(cachedStatus?.lastUpdated).add(3, 'minute').isAfter(dayjs())) {
-      return NextResponse.json({
-        spotifyStatus: cachedStatus
-      })
+    if (cachedStatus) {
+      const { lastUpdated } = cachedStatus
+      if (dayjs(lastUpdated).add(3, 'minute').isAfter(dayjs())) {
+        return NextResponse.json({
+          spotifyStatus: cachedStatus
+        })
+      }
     }
-  } catch (err: any) {
-    console.error('Error fetching cached status:', err)
-  }
 
-  try {
     const spotifyStatus = await getStatus()
 
     if (!spotifyStatus) {
