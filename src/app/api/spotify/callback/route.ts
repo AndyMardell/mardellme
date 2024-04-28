@@ -1,5 +1,3 @@
-// TODO: Write a test for this route
-
 import { kv } from '@vercel/kv'
 
 export async function POST(req: Request) {

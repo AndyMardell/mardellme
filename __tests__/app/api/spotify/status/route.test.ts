@@ -41,4 +41,33 @@ describe('GET Spotify Status', () => {
     expect(json).toEqual({ spotifyStatus: cachedStatus })
     expect(getStatus).not.toHaveBeenCalled()
   })
+
+  it('fetches new Spotify status if not cached', async () => {
+    const newStatus = {
+      lastUpdated: '2024-01-01T00:00:00Z',
+      track: 'New Song'
+    }
+    require('@vercel/kv').kv.get.mockResolvedValue(null)
+    require('@/lib/spotify').getStatus.mockResolvedValue(newStatus)
+    const response = await GET()
+    const json = await response.json()
+    expect(json).toEqual({ spotifyStatus: newStatus })
+  })
+
+  it('returns a 404 status if no player data is found', async () => {
+    require('@vercel/kv').kv.get.mockResolvedValue(null)
+    require('@/lib/spotify').getStatus.mockResolvedValue(null)
+    const response = await GET()
+    expect(response.status).toBe(404)
+    const json = await response.json()
+    expect(json).toEqual({ message: 'No player data found' })
+  })
+
+  it('returns a 500 status if an error occurs', async () => {
+    require('@vercel/kv').kv.get.mockRejectedValue(new Error('Test error'))
+    const response = await GET()
+    expect(response.status).toBe(500)
+    const json = await response.json()
+    expect(json).toEqual({ message: 'Error fetching Spotify status' })
+  })
 })

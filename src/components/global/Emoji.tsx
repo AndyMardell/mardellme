@@ -18,8 +18,7 @@ export default function Emoji({
   right,
   bottom,
   children,
-  animate,
-  origin
+  animate
 }: Props) {
   const wave = useSpring({
     config: { duration: 1200 },
