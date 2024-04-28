@@ -12,17 +12,23 @@ export default function Auth() {
       'user-read-playback-state'
     ]
 
+    const spotifyClientId = process.env.NEXT_PUBLIC_SPOTIFY_ID
+    const redirectUri = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/spotify/callback`
+
+    if (!spotifyClientId || !redirectUri) {
+      console.error('Environment variables are not defined')
+      return
+    }
+
+    const params = new URLSearchParams({
+      response_type: 'code',
+      client_id: spotifyClientId,
+      scope: scopes.join(' '),
+      redirect_uri: redirectUri
+    })
+
     window.location.replace(
-      'https://accounts.spotify.com/authorize' +
-        '?response_type=code' +
-        '&client_id=' +
-        process.env.NEXT_PUBLIC_SPOTIFY_ID +
-        '&scope=' +
-        encodeURIComponent(scopes.join(' ')) +
-        '&redirect_uri=' +
-        encodeURIComponent(
-          `${process.env.NEXT_PUBLIC_FRONTEND_URL}/spotify/callback` || ''
-        )
+      `https://accounts.spotify.com/authorize?${params.toString()}`
     )
   }, [])
 

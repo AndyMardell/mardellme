@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import ActiveLink from '@/components/global/ActiveLink'
-import '@testing-library/jest-dom'
 
 describe('ActiveLink', () => {
   it('renders correctly', () => {

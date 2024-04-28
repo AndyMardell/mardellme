@@ -26,11 +26,11 @@ const Work: NextPage = () => (
           Si digital
         </Link>
         , I have produced a variety of &quot;proper&quot; websites over the
-        years. For obvious reasons, I can&apos;t showcase these projects here.{' '}
+        years. For obvious reasons, I can&apos;t showcase these projects here.
       </p>
       <p>
         However, I like to keep myself busy; below, you&apos;ll discover a
-        collection of personal projects – some sillier than others, most born
+        collection of personal projects - some sillier than others, most born
         from curiosity<Sup>1</Sup>
       </p>
     </Content>

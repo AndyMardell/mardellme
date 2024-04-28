@@ -1,11 +1,16 @@
-import { NextResponse, NextRequest } from 'next/server'
+// TODO: Write a test for this route
+
 import { kv } from '@vercel/kv'
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   const { code } = await req.json()
 
   if (!code) {
-    return NextResponse.json({ message: 'Missing code' }, { status: 400 })
+    return new Response('Missing code', { status: 400 })
+  }
+
+  if (!process.env.SPOTIFY_CLIENT_ID || !process.env.SPOTIFY_CLIENT_SECRET) {
+    return new Response('Missing Spotify client information', { status: 500 })
   }
 
   try {
@@ -20,8 +25,8 @@ export async function POST(req: NextRequest) {
       },
       body: new URLSearchParams({
         grant_type: 'authorization_code',
-        client_id: process.env.SPOTIFY_CLIENT_ID || '',
-        client_secret: process.env.SPOTIFY_CLIENT_SECRET || '',
+        client_id: process.env.SPOTIFY_CLIENT_ID,
+        client_secret: process.env.SPOTIFY_CLIENT_SECRET,
         redirect_uri: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/spotify/callback`,
         code
       })
@@ -31,8 +36,9 @@ export async function POST(req: NextRequest) {
       headers: { Authorization: `Bearer ${accessToken}` }
     }).then((res) => res.json())
 
+    // TODO: Move this to an environment variable
     if (id !== 'andymardell') {
-      return NextResponse.json({ message: 'You are not me' }, { status: 403 })
+      return new Response('You are not me', { status: 403 })
     }
 
     await kv.set(
@@ -40,12 +46,9 @@ export async function POST(req: NextRequest) {
       JSON.stringify({ accessToken, refreshToken, expires })
     )
 
-    return NextResponse.json({ message: 'Tokens updated' })
+    return new Response('Tokens updated')
   } catch (err: any) {
     console.error(err.message)
-    return NextResponse.json(
-      { message: 'Something went wrong' },
-      { status: 500 }
-    )
+    return new Response('Something went wrong', { status: 500 })
   }
 }

@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import Preview from '@/components/spotify/Preview'
-import '@testing-library/jest-dom'
 
 describe('Preview', () => {
   it('renders an audio player', () => {

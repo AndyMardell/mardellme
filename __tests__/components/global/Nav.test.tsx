@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import Nav from '@/components/global/Nav'
-import '@testing-library/jest-dom'
 
 describe('Nav', () => {
   it('renders correctly', () => {

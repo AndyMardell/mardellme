@@ -1,17 +1,16 @@
 import React from 'react'
 import { render, screen, waitFor } from '@testing-library/react'
-import Spotify from '@/components/spotify/Spotify'
-import fetchMock from 'jest-fetch-mock'
-import '@testing-library/jest-dom'
 import dayjs from 'dayjs'
+import fetchMock from 'jest-fetch-mock'
+import Spotify from '@/components/spotify/Spotify'
 
 fetchMock.enableMocks()
 
-beforeEach(() => {
-  fetchMock.resetMocks()
-})
-
 describe('Spotify Component', () => {
+  beforeEach(() => {
+    fetchMock.resetMocks()
+  })
+
   it('displays the track name and artist when data is fetched', async () => {
     const mockData = {
       spotifyStatus: {
