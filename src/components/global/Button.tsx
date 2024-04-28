@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useSpring, config, animated, AnimatedProps } from 'react-spring'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
-import styles from '@/styles/Button.module.scss'
+import styles from './Button.module.scss'
 
 interface Props {
   children: React.ReactNode

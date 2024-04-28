@@ -1,6 +1,6 @@
 import Title from '@/components/global/Title'
 import Nav, { NavLink } from '@/components/global/Nav'
-import style from '@/styles/Header.module.scss'
+import style from './Header.module.scss'
 
 const links: NavLink[] = [
   { name: 'Work', url: '/work', internal: true },

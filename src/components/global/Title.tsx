@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import style from '@/styles/Title.module.scss'
+import style from './Title.module.scss'
 
 interface Props {
   children: React.ReactNode

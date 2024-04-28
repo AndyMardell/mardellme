@@ -1,5 +1,5 @@
-import styles from '@/styles/Divider.module.scss'
 import classNames from 'classnames'
+import styles from './Divider.module.scss'
 
 interface Props {
   $small?: Boolean

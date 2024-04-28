@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import ActiveLink from '@/components/global/ActiveLink'
-import style from '@/styles/NavItem.module.scss'
+import style from './NavItem.module.scss'
 
 export type NavLink = {
   name: string

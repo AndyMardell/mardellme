@@ -9,7 +9,7 @@ import Text from '@/components/global/Text'
 import Preview from '@/components/spotify/Preview'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
-import styles from '@/styles/spotify/Spotify.module.scss'
+import styles from './Spotify.module.scss'
 
 export type SpotifyStatus = {
   isPlaying: boolean

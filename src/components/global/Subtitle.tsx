@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import style from '@/styles/Subtitle.module.scss'
+import style from './Subtitle.module.scss'
 
 interface Props {
   children?: React.ReactNode

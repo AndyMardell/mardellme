@@ -1,5 +1,5 @@
-import style from '@/styles/Nav.module.scss'
 import NavItem from './NavItem'
+import style from './Nav.module.scss'
 
 export type NavLink = {
   name: string

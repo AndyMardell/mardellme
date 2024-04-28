@@ -1,6 +1,6 @@
 import Sup from '@/components/global/Sup'
 import Text from '@/components/global/Text'
-import style from '@/styles/work/Portfolio.module.scss'
+import style from './Portfolio.module.scss'
 
 const projects = [
   {

@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import style from '@/styles/Text.module.scss'
+import style from './Text.module.scss'
 
 interface Props {
   $small?: boolean

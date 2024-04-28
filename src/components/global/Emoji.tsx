@@ -2,7 +2,7 @@
 
 import { useSpring, animated, config, SpringValues } from 'react-spring'
 import classNames from 'classnames'
-import style from '@/styles/Emoji.module.scss'
+import style from './Emoji.module.scss'
 
 interface Props {
   inline?: boolean

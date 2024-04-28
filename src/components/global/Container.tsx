@@ -1,4 +1,4 @@
-import styles from '@/styles/Container.module.scss'
+import styles from './Container.module.scss'
 
 interface Props {
   children: React.ReactNode

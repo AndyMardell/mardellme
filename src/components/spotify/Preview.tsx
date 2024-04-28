@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlayCircle, faPauseCircle } from '@fortawesome/free-solid-svg-icons'
-import styles from '@/styles/spotify/Preview.module.scss'
+import styles from './Preview.module.scss'
 
 interface Props {
   src: string

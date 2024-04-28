@@ -1,4 +1,4 @@
-import style from '@/styles/spotify/Playing.module.scss'
+import style from './Playing.module.scss'
 
 export default function Playing() {
   return (

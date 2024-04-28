@@ -31,7 +31,6 @@ describe('GET Spotify Status', () => {
     jest.resetAllMocks()
   })
 
-  // FIXME: This doesn't work
   it('returns cached Spotify status if still valid', async () => {
     const cachedStatus = {
       lastUpdated: '2024-01-01T00:00:00Z',

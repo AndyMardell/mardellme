@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import classNames from 'classnames'
-import style from '@/styles/NavItem.module.scss'
+import style from './NavItem.module.scss'
 
 interface Props {
   children: React.ReactNode

@@ -6,7 +6,7 @@ import classNames from 'classnames'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import Emoji from '@/components/global/Emoji'
 import Button from '@/components/global/Button'
-import style from '@/styles/contact/ContactForm.module.scss'
+import style from './ContactForm.module.scss'
 
 type Inputs = {
   name: string
