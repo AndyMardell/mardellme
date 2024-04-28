@@ -1,5 +1,10 @@
 # 🌐 Mardell.me Personal Site
 
+![Unit test status](https://img.shields.io/github/actions/workflow/status/AndyMardell/mardellme/test.yml?label=tests)
+![Next.js version](https://img.shields.io/github/package-json/dependency-version/AndyMardell/mardellme/next/main?logo=Next.js)
+![Website](https://img.shields.io/website?url=http%3A%2F%2Fmardell.me&logo=vercel)
+
+
 This is my tiny digital outpost on the web, cobbled together with Next.js and curiosity. Check it out live at
 [mardell.me](https://mardell.me)
 
