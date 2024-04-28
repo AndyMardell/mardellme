@@ -4,7 +4,6 @@
 
 import { getStatus } from '@/lib/spotify'
 import { GET } from '@/app/api/spotify/status/route'
-import { waitFor } from '@testing-library/react'
 
 jest.mock('@vercel/kv', () => ({
   kv: {
@@ -36,7 +35,7 @@ describe('GET Spotify Status', () => {
       lastUpdated: '2024-01-01T00:00:00Z',
       track: 'Test Song'
     }
-    require('@vercel/kv').kv.get.mockResolvedValue(JSON.stringify(cachedStatus))
+    require('@vercel/kv').kv.get.mockResolvedValue(cachedStatus)
     const response = await GET()
     const json = await response.json()
     expect(json).toEqual({ spotifyStatus: cachedStatus })

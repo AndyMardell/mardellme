@@ -9,9 +9,7 @@ export const dynamic = 'force-dynamic'
 
 export async function GET() {
   try {
-    const cachedStatus: SpotifyStatus = JSON.parse(
-      (await kv.get('spotify:status')) || '{}'
-    )
+    const cachedStatus = await kv.get<SpotifyStatus>('spotify:status')
     if (dayjs(cachedStatus?.lastUpdated).add(3, 'minute').isAfter(dayjs())) {
       return NextResponse.json({
         spotifyStatus: cachedStatus
