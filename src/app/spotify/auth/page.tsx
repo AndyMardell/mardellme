@@ -2,6 +2,19 @@
 
 import { useEffect } from 'react'
 
+export const metadata = {
+  title: 'Connect to Spotify',
+  description: 'Connect your Spotify account to get started',
+  robots: {
+    follow: false,
+    index: false,
+    googleBot: {
+      index: false,
+      follow: false
+    }
+  }
+}
+
 export default function Auth() {
   useEffect(() => {
     const scopes = [
