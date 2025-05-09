@@ -2,39 +2,31 @@ body {
   font-family: $font-family-body;
   font-weight: 300;
   font-size: $font-size-base-max * 1px;
-  font-size: calc(
-    ($font-size-base-min * 1px) + ($font-size-base-max - $font-size-base-min) * ((100vw - 400px) / (1600 - 400))
-  );
+  font-size: calc(($font-size-base-min * 1px) + ($font-size-base-max - $font-size-base-min) * ((100vw - 400px) / (1600 - 400)));
   color: $color-white;
+  background-image: url('/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom center;
+  background-color: $color-black;
+
+  @supports (background-image: url('/bg.webp')) {
+    background-image: url('/bg.webp');
+  }
 }
 
 p {
   letter-spacing: 1px;
   line-height: 1.8;
-  margin: 1em 0;
+  margin: 1.5em 0;
 
   a {
-    font-weight: $font-weight-bold;
     color: inherit;
-    text-decoration: none;
+    text-decoration: underline;
     position: relative;
     overflow: hidden;
     padding: 0 0.2em;
-
-    &::after {
-      content: "";
-      position: absolute;
-      z-index: 0;
-      bottom: -0.2em;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-bottom: 4px solid $color-darkgrey;
-    }
-
-    &:hover::after {
-      border-color: $color-grey;
-    }
+    color: $color-orange;
   }
 }
 
@@ -43,6 +35,5 @@ ul {
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  color: $color-orange;
 }

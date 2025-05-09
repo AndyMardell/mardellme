@@ -1,0 +1,16 @@
+.list {
+  padding: 0;
+  margin: 2rem 0;
+
+  li {
+    list-style: none;
+    margin: 0.5em 0;
+    line-height: 1.5;
+
+    &::before {
+      content: "↳";
+      margin-right: 0.5rem;
+      color: $color-orange;
+    }
+  }
+}

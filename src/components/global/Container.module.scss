@@ -1,18 +1,13 @@
 $border-width-min: 10;
 $border-width-max: 20;
 $horizontal-padding-min: 20;
-$horizontal-padding-max: 90;
+$horizontal-padding-max: 120;
 $vertical-padding-min: 45;
-$vertical-padding-max: 90;
+$vertical-padding-max: 170;
 
 .wrapper {
   min-height: 100vh;
   width: 100%;
-  box-sizing: border-box;
-  background-color: $color-black;
-  border-width: calc(($border-width-min * 1px) + ($border-width-max - $border-width-min) * ((100vw - 300px) / (1600 - 300)));
-  border-style: solid;
-  border-color: $color-white;
 }
 
 .content {

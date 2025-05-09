@@ -1,7 +1,7 @@
 .container {
-  position: relative;
-  display: block;
+  display: flex;
   cursor: default;
+  align-items: flex-start;
 
   &:hover .links {
     display: flex;
@@ -9,20 +9,22 @@
 }
 
 .status {
-  font-size: 0.9em;
   display: flex;
   align-items: center;
+  text-transform: lowercase;
 
   strong {
     margin-right: 0.5em;
   }
+p {
+  margin: 0;
+}
 }
 
 .links {
-  position: absolute;
   display: flex;
   align-items: center;
-  width: 100%;
+  margin-left: 1rem;
 
   &:not(.playing) {
     display: none;

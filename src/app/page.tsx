@@ -1,39 +1,32 @@
 import Link from 'next/link'
 import Subtitle from '@/components/global/Subtitle'
 import Content from '@/components/global/Content'
-import Emoji from '@/components/global/Emoji'
-import Divider from '@/components/global/Divider'
-import Button from '@/components/global/Button'
+import List from '@/components/global/List'
 import Spotify from '@/components/spotify/Spotify'
 
 export default function Home() {
   return (
-    <Content maxWidth={700}>
+    <Content>
       <Subtitle>
-        Technical Project Manager at
-        <br />
-        <Link
-          href="https://sidigital.co"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Si digital.
-        </Link>{' '}
+        mardell.me v<span>5.2</span>
       </Subtitle>
-      <Emoji animate="wave">👋</Emoji>
-      <p>
-        I&apos;m Andy, a project manager with a rich history in web development.
-        Although my path has shifted from hands-on development, coding still
-        captivates my heart after hours.
-      </p>
-      <Button
-        href="/work"
-        style={{ marginTop: '2rem' }}
-      >
-        Work
-      </Button>
-      <Divider $small />
+      <List>
+        <li>
+          tech PM, dev, button presser{' '}
+          <Link
+            href="https://sidigital.co"
+            target="_blank"
+          >
+            @sidigital
+          </Link>
+        </li>
+        <li>currently: caffeinated, context-switching</li>
+        <li>status: system stable</li>
+      </List>
       <Spotify />
+      <p>
+        contact: <Link href="mailto:m@rdell.me">m@rdell.me</Link>
+      </p>
     </Content>
   )
 }

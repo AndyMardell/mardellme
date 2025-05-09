@@ -52,7 +52,9 @@ export default function Spotify() {
 
   if (loading) {
     return (
-      <div className={styles.status}>Loading embarrassing song data...</div>
+      <div className={styles.status}>
+        <Text>loading embarrassing song data...</Text>
+      </div>
     )
   }
 
@@ -67,7 +69,7 @@ export default function Spotify() {
       <div className={styles.status}>
         {isPlaying && <Playing />}
         <Text>
-          <strong>{isPlaying ? 'Now playing: ' : 'Last played: '}</strong>
+          <strong>{isPlaying ? 'now playing: ' : 'last played: '}</strong>
           {track.name} - {track.artist}
           {!isPlaying && ` (${dayjs(lastPlayed).fromNow()})`}
         </Text>
@@ -84,7 +86,7 @@ export default function Spotify() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Open in Spotify <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+          open in spotify <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
         </a>
       </div>
     </div>
