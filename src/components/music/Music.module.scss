@@ -24,13 +24,9 @@ p {
 }
 
 .links {
-  display: flex;
+  display: none;
   align-items: center;
   margin-left: 1rem;
-
-  &:not(.playing) {
-    display: none;
-  }
 
   a {
     font-size: .8em;
