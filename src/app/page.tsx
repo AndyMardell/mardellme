@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Subtitle from '@/components/global/Subtitle'
 import Content from '@/components/global/Content'
 import List from '@/components/global/List'
-import Spotify from '@/components/spotify/Spotify'
+import Music from '@/components/music/Music'
 
 export default function Home() {
   return (
@@ -23,7 +23,7 @@ export default function Home() {
         <li>currently: caffeinated, context-switching</li>
         <li>status: system stable</li>
       </List>
-      <Spotify />
+      <Music />
       <p>
         contact: <Link href="mailto:m@rdell.me">m@rdell.me</Link>
       </p>

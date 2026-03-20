@@ -3,40 +3,25 @@
 import { useState, useEffect } from 'react'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import classNames from 'classnames'
-import Playing from '@/components/spotify/Playing'
+import Playing from '@/components/music/Playing'
 import Text from '@/components/global/Text'
-import Preview from '@/components/spotify/Preview'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
-import styles from './Spotify.module.scss'
-
-export type SpotifyStatus = {
-  isPlaying: boolean
-  track: {
-    artist: string
-    name: string
-    url: string
-    preview?: string
-  }
-  lastPlayed: string
-  lastUpdated: string
-}
+import styles from './Music.module.scss'
+import type { MusicStatus } from '@/lib/lastfm'
 
 dayjs.extend(relativeTime)
 
-export default function Spotify() {
+export default function Music() {
   const [loading, setLoading] = useState<Boolean>(true)
-  const [status, setStatus] = useState<SpotifyStatus | false>(false)
-  const [playing, setPlaying] = useState<Boolean>(false)
+  const [status, setStatus] = useState<MusicStatus | false>(false)
 
   const getStatus = async () => {
     try {
-      const { spotifyStatus } = await fetch(
-        `${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/spotify/status`,
-        { cache: 'no-store' }
-      ).then((res) => res.json())
-      setStatus(spotifyStatus)
+      const { musicStatus } = await fetch('/api/lastfm/status', {
+        cache: 'no-store'
+      }).then((res) => res.json())
+      setStatus(musicStatus)
       setLoading(false)
     } catch (err: any) {
       setStatus(false)
@@ -63,7 +48,6 @@ export default function Spotify() {
   }
 
   const { track, lastPlayed, isPlaying } = status
-
   return (
     <div className={styles.container}>
       <div className={styles.status}>
@@ -74,19 +58,13 @@ export default function Spotify() {
           {!isPlaying && ` (${dayjs(lastPlayed).fromNow()})`}
         </Text>
       </div>
-      <div className={classNames(styles.links, { [styles.playing]: playing })}>
-        {track.preview && (
-          <Preview
-            src={track.preview}
-            setPlaying={setPlaying}
-          />
-        )}
+      <div className={styles.links}>
         <a
           href={track.url}
           target="_blank"
           rel="noopener noreferrer"
         >
-          open in spotify <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+          open on last.fm <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
         </a>
       </div>
     </div>

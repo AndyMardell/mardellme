@@ -2,8 +2,8 @@
  * @jest-environment node
  */
 
-import { getStatus } from '@/lib/spotify'
-import { GET } from '@/app/api/spotify/status/route'
+import { getRecentTrack } from '@/lib/lastfm'
+import { GET } from '@/app/api/lastfm/status/route'
 
 jest.mock('@vercel/kv', () => ({
   kv: {
@@ -21,46 +21,41 @@ jest.mock('dayjs', () => {
   Object.assign(mockDayjs, actualDayjs)
   return mockDayjs
 })
-jest.mock('@/lib/spotify', () => ({
-  getStatus: jest.fn()
+jest.mock('@/lib/lastfm', () => ({
+  getRecentTrack: jest.fn()
 }))
 
-describe('GET Spotify Status', () => {
+describe('GET Last.fm Status', () => {
   beforeEach(() => {
     jest.resetAllMocks()
   })
 
-  it('returns cached Spotify status if still valid', async () => {
+  it('returns cached status if still valid', async () => {
     const cachedStatus = {
       lastUpdated: '2024-01-01T00:00:00Z',
-      track: 'Test Song'
+      track: { name: 'Test Song', artist: 'Test Artist', url: '' },
+      isPlaying: false,
+      lastPlayed: '2024-01-01T00:00:00Z'
     }
     require('@vercel/kv').kv.get.mockResolvedValue(cachedStatus)
     const response = await GET()
     const json = await response.json()
-    expect(json).toEqual({ spotifyStatus: cachedStatus })
-    expect(getStatus).not.toHaveBeenCalled()
+    expect(json).toEqual({ musicStatus: cachedStatus })
+    expect(getRecentTrack).not.toHaveBeenCalled()
   })
 
-  it('fetches new Spotify status if not cached', async () => {
+  it('fetches new status if not cached', async () => {
     const newStatus = {
       lastUpdated: '2024-01-01T00:00:00Z',
-      track: 'New Song'
+      track: { name: 'New Song', artist: 'New Artist', url: '' },
+      isPlaying: true,
+      lastPlayed: '2024-01-01T00:00:00Z'
     }
     require('@vercel/kv').kv.get.mockResolvedValue(null)
-    require('@/lib/spotify').getStatus.mockResolvedValue(newStatus)
+    require('@/lib/lastfm').getRecentTrack.mockResolvedValue(newStatus)
     const response = await GET()
     const json = await response.json()
-    expect(json).toEqual({ spotifyStatus: newStatus })
-  })
-
-  it('returns a 404 status if no player data is found', async () => {
-    require('@vercel/kv').kv.get.mockResolvedValue(null)
-    require('@/lib/spotify').getStatus.mockResolvedValue(null)
-    const response = await GET()
-    expect(response.status).toBe(404)
-    const json = await response.json()
-    expect(json).toEqual({ message: 'No player data found' })
+    expect(json).toEqual({ musicStatus: newStatus })
   })
 
   it('returns a 500 status if an error occurs', async () => {
@@ -68,6 +63,6 @@ describe('GET Spotify Status', () => {
     const response = await GET()
     expect(response.status).toBe(500)
     const json = await response.json()
-    expect(json).toEqual({ message: 'Error fetching Spotify status' })
+    expect(json).toEqual({ message: 'Error fetching Last.fm status' })
   })
 })
